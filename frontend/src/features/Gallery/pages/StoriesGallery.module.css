@@ -1,0 +1,626 @@
+/* ==========================================================================
+   PAGE WRAPPER & HERO FEATURED STORY
+   ========================================================================== */
+.pageWrapper {
+  background-color: var(--bg);
+  min-height: 100svh;
+}
+
+.heroSection {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+.eyebrow {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.pageTitle {
+  color: var(--text-h);
+}
+
+.pageSubtitle {
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+/* Featured Editorial Card */
+.featuredCard {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.featuredImageBox {
+  position: relative;
+  min-height: 360px;
+}
+
+.featuredImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+}
+
+.featuredContent {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.featuredTitle {
+  font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+  line-height: 1.25;
+}
+
+.featuredExcerpt {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.authorBox {
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.authorName {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-h);
+}
+
+.authorRole {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   CERITA PETANI (SUARA KRAMA SUBAK)
+   ========================================================================== */
+.farmersSection {
+  background-color: var(--bg-subtle);
+  border-block: 1px solid var(--border);
+  padding-block: var(--section-gap);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.farmersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.farmerCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.farmerTop {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.farmerAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-border);
+  flex-shrink: 0;
+}
+
+.farmerExp {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.farmerName {
+  font-size: 1.35rem;
+  margin-top: 0.15rem;
+}
+
+.farmerRole {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.farmerQuote {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--text-h);
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--accent);
+}
+
+.farmerBio {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* ==========================================================================
+   ARTIKEL & FILTER BAR
+   ========================================================================== */
+.sectionHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.sectionHeaderRow h2 {
+  margin-top: 0.65rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.filterChip {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.5rem 1.05rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--bg-surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.filterChip:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.filterChipActive {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  border-color: var(--color-forest);
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.articleCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.articleThumbBox {
+  height: 210px;
+  overflow: hidden;
+}
+
+.articleThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.articleCard:hover .articleThumb {
+  transform: scale(1.04);
+}
+
+.articleBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+
+.categoryText {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.articleTitle {
+  font-size: 1.32rem;
+  line-height: 1.32;
+}
+
+.articleExcerpt {
+  font-size: 0.94rem;
+  color: var(--text);
+  flex: 1;
+}
+
+.readLinkBtn {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.readLinkBtn:hover {
+  color: var(--text-h);
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   GALERI DOKUMENTASI FOTO
+   ========================================================================== */
+.gallerySection {
+  padding-block: var(--section-gap);
+  background-color: var(--bg-surface);
+  border-block: 1px solid var(--border);
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+}
+
+.galleryItem {
+  position: relative;
+  margin: 0;
+  height: 310px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.spanWide {
+  grid-column: span 2;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05);
+}
+
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 28, 21, 0.88) 0%,
+    rgba(15, 28, 21, 0.25) 55%,
+    transparent 100%
+  );
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  color: var(--color-cream);
+}
+
+.photoCategory {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sage);
+}
+
+.photoTitle {
+  font-family: var(--font-serif-playfair);
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.photoLocation {
+  font-size: 0.82rem;
+  color: rgba(245, 241, 229, 0.8);
+}
+
+/* ==========================================================================
+   CONSERVATION IMPACT BANNER
+   ========================================================================== */
+.conservationBanner {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.conservationIntro {
+  max-width: 64ch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.eyebrowLight {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-sage);
+  background-color: rgba(167, 185, 138, 0.16);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.conservationHeading {
+  color: var(--color-cream);
+}
+
+.conservationDesc {
+  color: rgba(245, 241, 229, 0.85);
+}
+
+.conservationStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.conservationStatCard {
+  background-color: rgba(245, 241, 229, 0.06);
+  border: 1px solid rgba(245, 241, 229, 0.14);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.conservationMetric {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  color: var(--color-sage);
+}
+
+.conservationStatCard h3 {
+  font-family: var(--font-sans-jakarta);
+  font-size: 1.1rem;
+  color: var(--color-cream);
+}
+
+.conservationStatCard p {
+  font-size: 0.9rem;
+  color: rgba(245, 241, 229, 0.8);
+}
+
+/* ==========================================================================
+   MODALS (ARTICLE READER & PHOTO LIGHTBOX)
+   ========================================================================== */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(15, 28, 21, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.readerModal {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  max-height: 90svh;
+  overflow-y: auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.closeModalBtn {
+  position: sticky;
+  top: 1rem;
+  float: right;
+  margin: 1rem;
+  z-index: 10;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.readerCover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-top: -3.5rem;
+}
+
+.readerBody {
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.readerTitle {
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+}
+
+.readerAuthor {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.readerParagraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+/* Lightbox Modal */
+.lightboxModal {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.closeLightboxBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(15, 28, 21, 0.75);
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.lightboxImage {
+  width: 100%;
+  max-height: 70svh;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.lightboxInfo {
+  padding: 1.35rem 1.75rem;
+}
+
+.lightboxInfo h3 {
+  margin-block: 0.25rem 0.4rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .featuredCard {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredImageBox {
+    min-height: 280px;
+  }
+
+  .articlesGrid,
+  .conservationStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .farmersGrid,
+  .articlesGrid,
+  .galleryGrid,
+  .conservationStats {
+    grid-template-columns: 1fr;
+  }
+
+  .spanWide {
+    grid-column: span 1;
+  }
+
+  .galleryItem {
+    height: 260px;
+  }
+}

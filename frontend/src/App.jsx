@@ -1,122 +1,99 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar/Navigationbar';
+import LandingPage from './features/LandingPage/pages/LandingPage';
+import TourismMap from './features/TourismMap/pages/TourismMap';
+import StoriesGallery from './features/Gallery/pages/StoriesGallery';
+import Footer from './components/Footer/Footer';
+
+// Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return null;
+};
+
+// Placeholder sementara untuk halaman lainnya (siap Anda ganti dengan komponen asli nanti)
+const PlaceholderPage = ({ title, subtitle }) => (
+  <main className="section">
+    <div className="container">
+      <span
+        style={{
+          fontSize: '0.8rem',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '0.12em',
+          color: 'var(--accent)',
+        }}
+      >
+        Halaman Subak
+      </span>
+      <h1 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>{title}</h1>
+      <p>{subtitle}</p>
+    </div>
+  </main>
+);
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <BrowserRouter>
+      <ScrollToTop />
+      <NavigationBar />
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/filosofi"
+          element={
+            <PlaceholderPage
+              title="Filosofi Tri Hita Karana"
+              subtitle="Keseimbangan spiritual, sosial, dan ekologi yang menjadi landasan utama sistem irigasi Subak."
+            />
+          }
+        />
+        <Route
+          path="/irigasi"
+          element={
+            <PlaceholderPage
+              title="Arsitektur & Ekosistem Air"
+              subtitle="Menelusuri jaringan empelan, telabah, dan terowongan air (aungan) dari hulu ke hilir."
+            />
+          }
+        />
+        <Route
+          path="/isu"
+          element={
+            <PlaceholderPage
+              title="Isu Lingkungan terkait Ekosistem Subak"
+              subtitle="Membahas permasalahan yang mengancam keberlanjutan Subak, seperti alih fungsi lahan, pencemaran air, dan tekanan pariwisata."
+            />
+          }
+        />
+        <Route
+          path="/green-action"
+          element={
+            <PlaceholderPage
+              title="Mengubah Edukasi Menjadi Tindakan."
+              subtitle="Halaman kampanye yang berisi aksi nyata, misalnya hemat air, menjaga kebersihan saluran irigasi, mengurangi sampah, dan mendukung produk petani lokal. Tambahkan checklist aksi lingkungan yang bisa digunakan pengunjung."
+            />
+          }
+        />
+        <Route
+          path="/galeri"
+          element={<StoriesGallery/> }
+        />
+        <Route
+          path="/peta-subak"
+          element={<TourismMap/> }
+        />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
