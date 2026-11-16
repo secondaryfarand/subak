@@ -1,0 +1,112 @@
+.switcherWrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 450; /* Di atas layer Leaflet, di bawah modal/navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+}
+
+.triggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background-color: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-h);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.triggerBtn:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-surface);
+}
+
+.optionsMenu {
+  min-width: 185px;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background-color: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  animation: fadeSlideDown 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menuHeader {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  padding: 0.35rem 0.6rem 0.2rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 0.5rem 0.65rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.optionItem:hover {
+  background-color: var(--bg-subtle);
+  color: var(--text-h);
+}
+
+.optionSelected {
+  background-color: var(--accent-bg);
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.radioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+.optionSelected .radioDot {
+  border-color: var(--accent);
+  background-color: var(--accent);
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

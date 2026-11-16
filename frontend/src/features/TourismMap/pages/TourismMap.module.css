@@ -1,0 +1,523 @@
+/* ==========================================================================
+   PAGE HEADER & FILTER CONTROLS
+   ========================================================================== */
+.pageContainer {
+  background-color: var(--bg);
+  min-height: 100svh;
+  padding-bottom: var(--section-gap);
+}
+
+.headerSection {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.pageTitle {
+  margin-bottom: 0.65rem;
+}
+
+.pageSubtitle {
+  font-size: 1.02rem;
+  color: var(--text);
+}
+
+/* Tombol Toggle Aliran Air Hulu-Hilir */
+.watershedToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.watershedToggle:hover {
+  border-color: var(--accent);
+}
+
+.watershedActive {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--text-h);
+}
+
+.pulseDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+/* Filter Kategori */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.filterChip {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--bg-surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.filterChip:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.filterChipActive {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  border-color: var(--color-forest);
+}
+
+/* ==========================================================================
+   MAIN MAP & EDITORIAL PANEL GRID
+   ========================================================================== */
+.mapWorkspace {
+  padding-top: 2.25rem;
+}
+
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Kolom Kiri: Peta */
+.mapColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mapFrame {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  z-index: 1;
+}
+
+.leafletContainer {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.mapPopup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--font-body);
+  color: #173d2b;
+}
+
+.mapPopup span {
+  font-size: 0.8rem;
+  color: #527b50;
+}
+
+/* Legenda Peta Mengambang */
+.mapLegend {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 400;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legendPin {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-leaf);
+}
+
+.legendLine {
+  width: 18px;
+  height: 0;
+  border-top: 3px dashed var(--color-leaf);
+}
+
+/* Mini Cards Selector di Bawah Peta */
+.spotSelectorGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.spotMiniCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.25rem;
+  padding: 1rem 1.15rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.spotMiniCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+
+.spotMiniCardActive {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.miniRegency {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.miniName {
+  font-family: var(--font-serif-playfair);
+  font-size: 1.08rem;
+  color: var(--text-h);
+}
+
+.miniBadge {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   KOLOM KANAN: DETAIL PANEL & ETIKA BERWISATA
+   ========================================================================== */
+.detailPanel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.detailImageWrapper {
+  position: relative;
+  height: 220px;
+}
+
+.detailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.detailBody {
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.locationMeta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.detailTitle {
+  font-size: 1.75rem;
+}
+
+/* Tabs */
+.detailTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  background-color: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.tabBtn {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tabBtnActive {
+  background-color: var(--bg-surface);
+  color: var(--text-h);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tab Content */
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.detailDescription {
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.metricsBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.metricLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.metricValue {
+  font-size: 1.25rem;
+}
+
+.ecoStatusBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--accent-border);
+  color: var(--text-h);
+}
+
+/* Tab Etika Berwisata */
+.ethicsAlert {
+  font-size: 0.88rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-bg);
+  border-left: 3px solid var(--accent);
+  color: var(--text-h);
+}
+
+.ethicsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ethicsItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.ruleIndex {
+  font-family: var(--font-stat);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  margin-top: 0.15rem;
+}
+
+.dosDontsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  font-size: 0.84rem;
+}
+
+.doBox,
+.dontBox {
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.doBox {
+  background-color: rgba(82, 123, 80, 0.08);
+}
+
+.dontBox {
+  background-color: rgba(185, 74, 72, 0.07);
+}
+
+.doBox h4,
+.dontBox h4 {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.82rem;
+  margin-bottom: 0.45rem;
+}
+
+.doBox ul,
+.dontBox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Footer Panel */
+.detailFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.pledgeBtn {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-forest);
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.pledgeBtn:hover {
+  background-color: var(--color-leaf);
+  border-color: var(--color-leaf);
+}
+
+.pledgeBtnDone {
+  background-color: var(--accent-bg);
+  color: var(--text-h);
+  border-color: var(--accent);
+}
+
+.routeBtn {
+  width: 100%;
+  text-align: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .workspaceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapFrame {
+    height: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .spotSelectorGrid,
+  .dosDontsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapFrame {
+    height: 360px;
+  }
+}

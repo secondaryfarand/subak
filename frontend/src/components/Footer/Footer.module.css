@@ -1,0 +1,362 @@
+/* ==========================================================================
+   FOOTER BASE (100% SANS-SERIF + PALET FOREST & CREAM)
+   ========================================================================== */
+.footer {
+  margin-top: auto;
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  font-family: var(--font-sans-jakarta);
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+/* ==========================================================================
+   1. NEWSLETTER BANNER BOX
+   ========================================================================== */
+.newsletterBox {
+  background-color: rgba(245, 241, 229, 0.055);
+  border: 1px solid rgba(245, 241, 229, 0.12);
+  border-radius: var(--radius-md);
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 2.75rem);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.newsletterText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.newsletterTitle {
+  font-family: var(--font-sans-jakarta);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  margin: 0;
+}
+
+.newsletterDesc {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(245, 241, 229, 0.78);
+  max-width: 52ch;
+}
+
+.newsletterForm {
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgba(245, 241, 229, 0.32);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem 0.35rem 0.95rem;
+  background-color: rgba(15, 28, 21, 0.25);
+  transition: var(--transition-smooth);
+}
+
+.inputGroup:focus-within {
+  border-color: var(--color-sage);
+  background-color: rgba(15, 28, 21, 0.45);
+}
+
+.mailIcon {
+  display: flex;
+  align-items: center;
+  color: rgba(245, 241, 229, 0.75);
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.emailInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.88rem;
+  color: var(--color-cream);
+  padding-block: 0.45rem;
+}
+
+.emailInput::placeholder {
+  color: rgba(245, 241, 229, 0.65);
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.submitBtn:hover {
+  background-color: var(--color-leaf);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   2. MIDDLE GRID: QUICK LINKS, INFORMATION, & SOCIAL ICONS
+   ========================================================================== */
+.middleGrid {
+  display: grid;
+  grid-template-columns: 0.7fr 1.1fr 1fr;
+  gap: 2.5rem;
+  padding-block: clamp(2.75rem, 5vw, 3.75rem);
+}
+
+.columnLabel {
+  display: block;
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+  color: rgba(245, 241, 229, 0.55);
+  margin-bottom: 1.25rem;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.linkList a {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  transition: var(--transition-smooth);
+}
+
+.linkList a:hover {
+  color: var(--color-sage);
+}
+
+/* Information Column */
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.orgName {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-cream);
+}
+
+.addressText {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(245, 241, 229, 0.78);
+  max-width: 40ch;
+}
+
+.directionLink {
+  margin-top: 1.65rem;
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  transition: var(--transition-smooth);
+}
+
+.directionLink:hover {
+  color: var(--color-sage);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Social Column */
+.socialColumn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.socialList {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-cream);
+  color: var(--color-forest);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.socialBtn:hover {
+  background-color: var(--color-sage);
+  color: var(--color-forest);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. RECOGNITION & SUSTAINABILITY BADGES ROW
+   ========================================================================== */
+.badgesRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.badgeCard {
+  width: 84px;
+  height: 84px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(245, 241, 229, 0.065);
+  border: 1px solid rgba(245, 241, 229, 0.14);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.15rem;
+  transition: var(--transition-smooth);
+}
+
+.badgeCard:hover {
+  background-color: rgba(167, 185, 138, 0.16);
+  border-color: var(--color-sage);
+  transform: translateY(-2px);
+}
+
+.badgeTop {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-sage);
+}
+
+.badgeMain {
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-cream);
+}
+
+.badgeSub {
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(245, 241, 229, 0.65);
+}
+
+/* ==========================================================================
+   4. BOTTOM COPYRIGHT & RETURN TO TOP BAR
+   ========================================================================== */
+.bottomBar {
+  border-top: 1px solid rgba(245, 241, 229, 0.14);
+  padding-block: 1.35rem;
+}
+
+.bottomContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: rgba(245, 241, 229, 0.78);
+}
+
+.copyrightGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.returnTopBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.returnTopBtn:hover {
+  color: var(--color-sage);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 960px) {
+  .newsletterBox {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .middleGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .socialColumn {
+    grid-column: span 2;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .middleGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .socialColumn {
+    grid-column: span 1;
+  }
+
+  .badgesRow {
+    justify-content: flex-start;
+  }
+
+  .bottomContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

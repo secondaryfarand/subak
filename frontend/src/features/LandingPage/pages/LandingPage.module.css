@@ -1,0 +1,328 @@
+/* ==========================================================================
+   PAGE WRAPPER & NAVBAR
+   ========================================================================== */
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding-block: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-serif-dm);
+  font-size: 1.65rem;
+  letter-spacing: 0.04em;
+  color: var(--text-h);
+}
+
+.logo:hover {
+  color: var(--text-h);
+}
+
+.logoDot {
+  color: var(--color-leaf);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.navLinks a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.navLinks a:hover {
+  color: var(--text-h);
+}
+
+/* ==========================================================================
+   HERO SECTION (EDITORIAL ASYMMETRIC GRID)
+   ========================================================================== */
+.heroSection {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.35rem;
+}
+
+.eyebrow {
+  font-family: var(--font-sans-jakarta);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.heroTitle {
+  color: var(--text-h);
+}
+
+.italicAccent {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.heroDescription {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.heroImageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.imageCaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-inline: 0.25rem;
+}
+
+/* ==========================================================================
+   STATS SECTION (PLUS JAKARTA SANS TABULAR)
+   ========================================================================== */
+.statsSection {
+  border-block: 1px solid var(--border);
+  background-color: var(--bg-subtle);
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--accent-border);
+}
+
+.statValue {
+  font-size: clamp(2rem, 3.5vw, 2.85rem);
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ECOSYSTEM CARDS SECTION
+   ========================================================================== */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.cardNumber {
+  font-family: var(--font-stat);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  background-color: var(--accent-bg);
+  width: fit-content;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.featureCard h3 {
+  font-size: 1.5rem;
+}
+
+.featureCard p {
+  font-size: 0.98rem;
+  color: var(--text);
+}
+
+/* ==========================================================================
+   EDITORIAL QUOTE SECTION
+   ========================================================================== */
+.quoteSection {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+
+.quoteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.quoteText {
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  line-height: 1.35;
+  max-width: 28ch;
+  margin: 0;
+  color: var(--color-cream);
+}
+
+.quoteAuthor {
+  font-family: var(--font-sans-jakarta);
+  font-style: normal;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-block: 2rem;
+  background-color: var(--bg-surface);
+}
+
+.footerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footerLogo {
+  font-family: var(--font-serif-dm);
+  font-size: 1.25rem;
+  color: var(--text-h);
+}
+
+.footerCopy {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (Tablet & Mobile)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .heroImage {
+    aspect-ratio: 16 / 10;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .navLinks {
+    display: none; /* Menyederhanakan navigasi di layar ponsel */
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroActions {
+    width: 100%;
+  }
+
+  .heroActions a {
+    flex: 1;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,111 +1,296 @@
+/* ==========================================================================
+   1. GOOGLE FONTS IMPORT (Serif & Sans-Serif Lengkap)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   2. DESIGN TOKENS & CSS VARIABLES (Tema: Subak Bali)
+   ========================================================================== */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* --- Palet Warna Utama --- */
+  --color-forest: #173D2B;       /* Hijau hutan tua (Teks utama / Primary Dark) */
+  --color-leaf: #527B50;         /* Hijau daun sawah (Aksen utama / Interactive) */
+  --color-sage: #A7B98A;         /* Hijau lembut (Aksen sekunder / Highlight) */
+  --color-cream: #F5F1E5;        /* Krem alami (Latar belakang utama / Canvas) */
+  --color-cream-light: #FAF8F2;  /* Permukaan kartu (Surface / Elevated) */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* --- Semantic Tokens (Light Mode Default) --- */
+  --bg: var(--color-cream);
+  --bg-surface: var(--color-cream-light);
+  --bg-subtle: rgba(167, 185, 138, 0.18); /* Tint lembut dari Sage */
+  
+  --text: #3A4D42;               /* Hijau keabu-abuan gelap agar nyaman dibaca */
+  --text-h: var(--color-forest); /* Judul menggunakan Forest tegas */
+  --text-muted: #687A6F;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  --accent: var(--color-leaf);
+  --accent-hover: var(--color-forest);
+  --accent-bg: rgba(82, 123, 80, 0.12);
+  --accent-border: rgba(82, 123, 80, 0.35);
+
+  --border: rgba(23, 61, 43, 0.12);
+  --border-strong: rgba(23, 61, 43, 0.25);
+  --code-bg: rgba(167, 185, 138, 0.22);
+
+  /* --- Elevasi & Bayangan Organik --- */
+  --shadow-sm: 0 2px 8px rgba(23, 61, 43, 0.04);
+  --shadow: 0 12px 28px -6px rgba(23, 61, 43, 0.08), 
+            0 4px 10px -2px rgba(23, 61, 43, 0.04);
+
+  /* --- Definisi Variabel Font (Serif & Sans-Serif) --- */
+  --font-serif-playfair: 'Playfair Display', Georgia, serif;
+  --font-serif-dm: 'DM Serif Display', Georgia, serif;
+  --font-sans-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  /* --- Alias Peran Tipografi (Ubah di sini untuk mengganti gaya global) --- */
+  --font-heading: var(--font-serif-playfair);   /* Alternatif: var(--font-serif-dm) */
+  --font-body: var(--font-sans-jakarta);        /* Alternatif: var(--font-sans-inter) */
+  --font-stat: var(--font-sans-jakarta);        /* Khusus angka dan statistik */
+
+  /* --- Tata Letak & Ruang Kosong Editorial --- */
+  --container-max: 1200px;
+  --section-gap: clamp(4rem, 8vw, 7rem); /* Whitespace luas khas editorial */
+  --radius-sm: 8px;
+  --radius-md: 14px;                     /* Rounded card secukupnya */
+  --radius-lg: 20px;
+  --transition-smooth: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Base Rendering --- */
+  font: 17px/1.65 var(--font-body);
+  letter-spacing: -0.01em;
   color-scheme: light dark;
   color: var(--text);
-  background: var(--bg);
+  background-color: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
+  :root {
     font-size: 16px;
   }
 }
 
+/* ==========================================================================
+   3. DARK MODE (Nuansa Sawah Malam / Hutan Tropis Teduh)
+   ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+    --bg: #0F1C15;               /* Turunan gelap dari Forest */
+    --bg-surface: #16281E;       /* Kartu sedikit lebih terang */
+    --bg-subtle: rgba(167, 185, 138, 0.08);
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    --text: #C4D1C7;
+    --text-h: var(--color-cream);
+    --text-muted: #8FA395;
+
+    --accent: var(--color-sage);
+    --accent-hover: #BFD0A5;
+    --accent-bg: rgba(167, 185, 138, 0.14);
+    --accent-border: rgba(167, 185, 138, 0.35);
+
+    --border: rgba(245, 241, 229, 0.1);
+    --border-strong: rgba(245, 241, 229, 0.22);
+    --code-bg: rgba(245, 241, 229, 0.08);
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.45), 
+              0 4px 12px -2px rgba(0, 0, 0, 0.3);
   }
+}
+
+/* ==========================================================================
+   4. GLOBAL RESET & SMOOTH SCROLL
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Animasi scroll yang lembut */
 }
 
 body {
   margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  width: 100%;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
+/* Foto alam Bali yang responsif dan bersih */
+img,
+picture,
+video {
+  max-width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   5. TYPOGRAPHY SYSTEM
+   ========================================================================== */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
   color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.3;
+}
+
+p {
+  margin: 0;
+  max-width: 68ch; /* Lebar baris ideal untuk kenyamanan membaca editorial */
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Angka & Statistik (Plus Jakarta Sans dengan Tabular Numerals) */
+.stat-number {
+  font-family: var(--font-stat);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
   color: var(--text-h);
 }
 
 code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.2em 0.45em;
+  border-radius: 6px;
   background: var(--code-bg);
+  color: var(--text-h);
+}
+
+/* ==========================================================================
+   6. FONT UTILITY CLASSES (Untuk Kombinasi Cepat di JSX / HTML)
+   ========================================================================== */
+.font-playfair {
+  font-family: var(--font-serif-playfair);
+}
+
+.font-dm-serif {
+  font-family: var(--font-serif-dm);
+}
+
+.font-jakarta {
+  font-family: var(--font-sans-jakarta);
+}
+
+.font-inter {
+  font-family: var(--font-sans-inter);
+}
+
+/* ==========================================================================
+   7. EDITORIAL LAYOUT & REUSABLE UI PRIMITIVES
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+/* Kartu minimalis dengan rounded secukupnya */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent-border);
+}
+
+/* Tombol utama bernuansa alam */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-leaf);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Tombol sekunder (Outline / Sage tint) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background-color: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
 }
