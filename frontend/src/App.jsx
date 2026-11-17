@@ -5,6 +5,7 @@ import LandingPage from './features/LandingPage/pages/LandingPage';
 import TourismMap from './features/TourismMap/pages/TourismMap';
 import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
+import ExploreSubak from './features/ExploreSubak/pages/ExploreSubak';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -46,6 +47,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/eksplorasi"
+          element={<ExploreSubak />}
+        />
         <Route
           path="/filosofi"
           element={
