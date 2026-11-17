@@ -7,6 +7,7 @@ import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
 import IssuesPage from './features/Issues/pages/IssuesPage';
 import IssueDetail from './features/Issues/pages/IssueDetail';
+import SubakConnect from './features/Community/pages/SubakConnect';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -86,6 +87,10 @@ function App() {
         <Route
           path="/peta-subak"
           element={<TourismMap/> }
+        />
+        <Route
+          path="/komunitas"
+          element={<SubakConnect/> }
         />
       </Routes>
       <Footer />
