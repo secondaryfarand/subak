@@ -2,12 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ExploreSubak.module.css';
+import ScrollReveal from '../../../components/ScrollReveal';
 
 const ExploreSubak = () => {
   return (
     <main className={styles.page}>
 
       {/* HERO SECTION */}
+      <ScrollReveal>
       <section className={styles.hero}>
         <div className={styles.container}>
           <span className={styles.eyebrow}>
@@ -47,8 +49,10 @@ const ExploreSubak = () => {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* INTRODUCTION */}
+      <ScrollReveal>
       <section className={styles.introduction}>
         <div className={styles.container}>
           <span className={styles.eyebrow}>01 — TENTANG SUBAK</span>
@@ -66,8 +70,10 @@ const ExploreSubak = () => {
           </p>
         </div>
       </section>
+</ScrollReveal>
 
       {/* HISTORY */}
+      <ScrollReveal>
       <section id="sejarah" className={styles.section}>
         <div className={styles.container}>
           <span className={styles.eyebrow}>02 — JEJAK SEJARAH</span>
@@ -105,8 +111,10 @@ const ExploreSubak = () => {
           </div>
         </div>
       </section>
+</ScrollReveal>
 
       {/* TRI HITA KARANA */}
+      <ScrollReveal>
       <section id="filosofi" className={styles.philosophy}>
         <div className={styles.container}>
           <span className={styles.eyebrow}>03 — FILOSOFI KEHIDUPAN</span>
@@ -158,8 +166,10 @@ const ExploreSubak = () => {
           </div>
         </div>
       </section>
+</ScrollReveal>
 
 {/* SISTEM IRIGASI */}
+<ScrollReveal>
 <section className={styles.section}>
   <div className={styles.container}>
     <span className={styles.eyebrow}>
@@ -195,8 +205,10 @@ const ExploreSubak = () => {
     </div>
   </div>
 </section>
+</ScrollReveal>
 
       {/* JOURNEY CTA */}
+      <ScrollReveal>
       <section className={styles.journey}>
         <div className={styles.container}>
           <span className={styles.eyebrow}>LANJUTKAN PENJELAJAHAN</span>
@@ -217,7 +229,7 @@ const ExploreSubak = () => {
           </Link>
         </div>
       </section>
-
+</ScrollReveal>
     </main>
   );
 };

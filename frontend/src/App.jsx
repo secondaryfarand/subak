@@ -6,6 +6,7 @@ import TourismMap from './features/TourismMap/pages/TourismMap';
 import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
 import ExploreSubak from './features/ExploreSubak/pages/ExploreSubak';
+import JourneyOfWater from './features/JourneyOfWater/pages/JourneyOfWater';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -61,14 +62,9 @@ function App() {
           }
         />
         <Route
-          path="/irigasi"
-          element={
-            <PlaceholderPage
-              title="Arsitektur & Ekosistem Air"
-              subtitle="Menelusuri jaringan empelan, telabah, dan terowongan air (aungan) dari hulu ke hilir."
-            />
-          }
-        />
+            path="/irigasi"
+            element={<JourneyOfWater />}
+          />
         <Route
           path="/isu"
           element={
