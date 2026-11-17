@@ -5,6 +5,8 @@ import LandingPage from './features/LandingPage/pages/LandingPage';
 import TourismMap from './features/TourismMap/pages/TourismMap';
 import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
+import IssuesPage from './features/Issues/pages/IssuesPage';
+import IssueDetail from './features/Issues/pages/IssueDetail';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -64,15 +66,10 @@ function App() {
             />
           }
         />
-        <Route
-          path="/isu"
-          element={
-            <PlaceholderPage
-              title="Isu Lingkungan terkait Ekosistem Subak"
-              subtitle="Membahas permasalahan yang mengancam keberlanjutan Subak, seperti alih fungsi lahan, pencemaran air, dan tekanan pariwisata."
-            />
-          }
-        />
+
+    <Route path="/isu" element={<IssuesPage />} />
+    <Route path="/isu/:slug" element={<IssueDetail />} />
+    
         <Route
           path="/green-action"
           element={
