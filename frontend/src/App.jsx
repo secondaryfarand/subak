@@ -68,18 +68,8 @@ function App() {
             path="/irigasi"
             element={<JourneyOfWater />}
           />
-        <Route
-          path="/isu"
-          element={
-            <PlaceholderPage
-              title="Isu Lingkungan terkait Ekosistem Subak"
-              subtitle="Membahas permasalahan yang mengancam keberlanjutan Subak, seperti alih fungsi lahan, pencemaran air, dan tekanan pariwisata."
-            />
-          }
-        />
-
-    <Route path="/isu" element={<IssuesPage />} />
-    <Route path="/isu/:slug" element={<IssueDetail />} />
+        <Route path="/isu" element={<IssuesPage />} />
+        <Route path="/isu/:slug" element={<IssueDetail />} />
     
         <Route
           path="/green-action"
