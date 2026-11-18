@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
 
-const NavigationBar = () => {
+const NavigationBar = ({ theme, onToggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -17,6 +18,7 @@ const NavigationBar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 24);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,6 +26,7 @@ const NavigationBar = () => {
   // Kunci scroll body saat menu mobile terbuka
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
+
     return () => {
       document.body.style.overflow = '';
     };
@@ -67,8 +70,19 @@ const NavigationBar = () => {
           </ul>
         </nav>
 
-        {/* CTA Desktop & Tombol Hamburger Mobile */}
+        {/* CTA dan Tombol Tema */}
         <div className={styles.navActions}>
+          <button
+            type="button"
+            className={styles.themeToggle}
+            onClick={onToggleTheme}
+            aria-label={`Aktifkan mode ${theme === 'light' ? 'gelap' : 'terang'}`}
+            aria-pressed={theme === 'dark'}
+            title={`Mode ${theme === 'light' ? 'gelap' : 'terang'}`}
+          >
+            {theme === 'light' ? '☾' : '☀'}
+          </button>
+
           <Link to="/ekosistem" className={`btn-primary ${styles.desktopCta}`}>
             Jelajahi Sistem
           </Link>
@@ -96,6 +110,7 @@ const NavigationBar = () => {
       <aside className={`${styles.mobileDrawer} ${isOpen ? styles.drawerOpen : ''}`}>
         <div className={styles.drawerContent}>
           <span className={styles.drawerLabel}>Menu Navigasi</span>
+
           <ul className={styles.mobileNavList}>
             {navItems.map((item) => (
               <li key={item.path}>
@@ -116,6 +131,15 @@ const NavigationBar = () => {
             <Link to="/ekosistem" className={`btn-primary ${styles.mobileCta}`}>
               Jelajahi Sistem Subak
             </Link>
+
+            <button
+              type="button"
+              className={styles.mobileThemeToggle}
+              onClick={onToggleTheme}
+            >
+              {theme === 'light' ? '☾  Aktifkan Mode Gelap' : '☀  Aktifkan Mode Terang'}
+            </button>
+
             <p className={styles.drawerNote}>Warisan Budaya Dunia • Bali</p>
           </div>
         </div>

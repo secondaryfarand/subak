@@ -123,7 +123,7 @@
 .introduction h2 em,
 .section h2 em,
 .philosophy h2 em {
-  color: var(--color-sage);
+  color: var(--color-leaf, #4f8068);
   font-weight: 400;
 }
 
@@ -727,6 +727,7 @@
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 500;
   line-height: 1.2;
+  color: #f5f3e9;
 }
 
 .journeyInvitation > p {

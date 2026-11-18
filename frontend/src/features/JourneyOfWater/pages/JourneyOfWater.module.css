@@ -775,3 +775,342 @@
     transition: none !important;
   }
 }
+
+
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 85px 6%;
+    gap: 35px;
+    grid-template-columns: 1fr 0.8fr;
+  }
+
+  .journey {
+    padding: 85px 5% 90px;
+  }
+
+  .journeyLayout {
+    grid-template-columns: 1fr;
+    gap: 55px;
+    max-width: 650px;
+  }
+
+  .waterTimeline {
+    max-width: 440px;
+    width: 100%;
+  }
+
+  .journeyLayout .detailCard {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  /* HERO */
+
+  .hero {
+    min-height: auto;
+    padding: 75px 5% 65px;
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 10vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+    margin-bottom: 20px;
+  }
+
+  .heroContent > p {
+    font-size: 14px;
+    line-height: 1.85;
+    margin-bottom: 25px;
+  }
+
+  .heroButton {
+    padding: 15px 20px;
+    font-size: 12px;
+  }
+
+  .heroImage {
+    width: 100%;
+    height: 260px;
+    border-radius: 100px 100px 8px 8px;
+  }
+
+  /* JOURNEY SECTION */
+
+  .journey {
+    padding: 75px 5% 80px;
+  }
+
+  .sectionHeading {
+    margin-bottom: 45px;
+  }
+
+  .sectionHeading h2 {
+    font-size: clamp(30px, 8vw, 38px);
+    letter-spacing: -1px;
+  }
+
+  .sectionHeading p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* STACK TIMELINE AND CARD */
+
+  .journeyLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 35px;
+  }
+
+  /* WATER TIMELINE */
+
+  .waterTimeline {
+    width: 100%;
+    max-width: 390px;
+    height: 560px;
+    margin: 0 auto;
+  }
+
+  .waterPath {
+    width: 100%;
+    height: 100%;
+  }
+
+  .waterStepButton {
+    width: 46%;
+    max-width: 175px;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .waterStepNumber {
+    width: 43px;
+    height: 43px;
+    font-size: 13px;
+  }
+
+  .waterStepLabel {
+    min-width: 0;
+    gap: 5px;
+  }
+
+  .waterStepLabel small {
+    font-size: 10px;
+    letter-spacing: 1.3px;
+  }
+
+  .waterStepLabel strong {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* DETAIL CARD */
+
+  .journeyLayout .detailCard {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  .journeyProgress {
+    padding: 22px 22px 0;
+    min-width: 0;
+  }
+
+  .progressInfo {
+    gap: 10px;
+  }
+
+  .progressInfo span {
+    font-size: 9px;
+    letter-spacing: 1.3px;
+  }
+
+  .progressInfo strong {
+    font-size: 12px;
+  }
+
+  .journeyProgress > p {
+    font-size: 11px;
+  }
+
+  /* DETAIL IMAGE */
+
+  .journeyLayout .detailImage {
+    width: 100%;
+    height: 220px;
+    min-height: 220px;
+    margin-top: 18px;
+  }
+
+  .journeyLayout .detailImage img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+  }
+
+  /* DETAIL CONTENT */
+
+  .journeyLayout .detailContent {
+    width: 100%;
+    min-width: 0;
+    padding: 25px 22px;
+    box-sizing: border-box;
+  }
+
+  .stepLabel {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .journeyLayout .detailContent h3 {
+    font-size: 29px;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+  }
+
+  .journeyLayout .detailContent > p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* FACT BOX */
+
+  .factBox {
+    padding: 17px;
+    margin-top: 18px;
+    box-sizing: border-box;
+  }
+
+  .factBox strong {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .factBox p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  /* NAVIGATION */
+
+  .navigation {
+    gap: 10px;
+    margin-top: 23px;
+  }
+
+  .navigation button {
+    padding: 12px 13px;
+    font-size: 11px;
+  }
+
+  /* CLOSING */
+
+  .closing {
+    padding: 75px 5% 28px;
+  }
+
+  .closingContent {
+    margin-bottom: 35px;
+  }
+
+  .closingContent h2 {
+    font-size: clamp(34px, 9vw, 44px);
+    letter-spacing: -1px;
+  }
+
+  .closingContent > p {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .closingImage {
+    height: 250px;
+    margin-bottom: 35px;
+  }
+
+  .closingImageOverlay {
+    padding: 22px;
+  }
+
+  .closingImageOverlay p {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .waterTimeline {
+    height: 530px;
+  }
+
+  .waterStepButton {
+    width: 48%;
+    gap: 6px;
+  }
+
+  .waterStepNumber {
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .waterStepLabel small {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .waterStepLabel strong {
+    font-size: 12px;
+  }
+
+  .journeyLayout .detailContent {
+    padding: 22px 18px;
+  }
+
+  .journeyProgress {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navigation button {
+    padding: 11px 10px;
+    font-size: 10px;
+  }
+}

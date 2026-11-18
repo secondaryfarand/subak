@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './LandingPage.module.css';
+import ScrollReveal from '../../../components/ScrollReveal';
 import EditorialIntroSection from '../components/EditorialIntroSection';
 import InteractiveSolutionsSection from '../components/InteractiveSolutionsSection';
 import FieldShowcaseBanner from '../components/FieldShowcaseBanner';
@@ -11,6 +13,7 @@ const LandingPage = () => {
     <div className={styles.pageWrapper}>
       <main>
         {/* 1. Hero Section Editorial */}
+        <ScrollReveal>
         <section id="beranda" className={styles.heroSection}>
           <div className={`container ${styles.heroGrid}`}>
             <div className={styles.heroText}>
@@ -47,8 +50,10 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* 2. Statistik & Angka */}
+        <ScrollReveal delay={100}>
         <section id="data" className={styles.statsSection}>
           <div className="container">
             <div className={styles.statsGrid}>
@@ -67,11 +72,15 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* 3. Child: Editorial Split Narasi + 3 Kartu Foto */}
-        <EditorialIntroSection />
+        <ScrollReveal delay={100}>
+          <EditorialIntroSection />
+        </ScrollReveal>
 
         {/* 4. Ekosistem & Pilar Utama (Tri Hita Karana) */}
+        <ScrollReveal delay={100}>
         <section id="ekosistem" className="section">
           <div className="container">
             <div className={styles.sectionHeader}>
@@ -113,14 +122,20 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* 5. Child: Accordion Interaktif Pilar Tata Kelola */}
-        <InteractiveSolutionsSection />
+        <ScrollReveal delay={100}>
+          <InteractiveSolutionsSection />
+        </ScrollReveal>
 
         {/* 6. Child: Banner Panorama Sawah & Overlay Card */}
-        <FieldShowcaseBanner />
+        <ScrollReveal delay={100}>
+          <FieldShowcaseBanner />
+        </ScrollReveal>
 
         {/* 7. Kutipan Editorial */}
+        <ScrollReveal delay={100}>
         <section id="filosofi" className={styles.quoteSection}>
           <div className={`container ${styles.quoteContainer}`}>
             <blockquote className={`${styles.quoteText} font-dm-serif`}>
@@ -130,9 +145,12 @@ const LandingPage = () => {
             <cite className={styles.quoteAuthor}>— Kearifan Lokal Krama Subak Bali —</cite>
           </div>
         </section>
+        </ScrollReveal>
 
         {/* 8. Child: Bento Grid Suara Krama & CTA Penutup */}
-        <FarmerVoicesSection />
+        <ScrollReveal delay={100}>
+          <FarmerVoicesSection />
+        </ScrollReveal>
       </main>
     </div>
   );

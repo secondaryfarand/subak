@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar/Navigationbar';
 import LandingPage from './features/LandingPage/pages/LandingPage';
@@ -12,6 +13,7 @@ import IssueDetail from './features/Issues/pages/IssueDetail';
 import SubakConnect from './features/Community/pages/SubakConnect';
 import GreenActionPage from './features/GreenAction/pages/GreenActionPage';
 
+
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -23,7 +25,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Placeholder sementara untuk halaman lainnya (siap Anda ganti dengan komponen asli nanti)
+// Placeholder sementara untuk halaman lainnya
 const PlaceholderPage = ({ title, subtitle }) => (
   <main className="section">
     <div className="container">
@@ -45,17 +47,38 @@ const PlaceholderPage = ({ title, subtitle }) => (
 );
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('subak-theme') || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('subak-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) =>
+      currentTheme === 'light' ? 'dark' : 'light'
+    );
+  };
+
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <NavigationBar />
+
+      <NavigationBar
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+
         <Route
           path="/eksplorasi"
           element={<ExploreSubak />}
         />
+
         <Route
           path="/filosofi"
           element={
@@ -65,28 +88,33 @@ function App() {
             />
           }
         />
+
         <Route
-            path="/irigasi"
-            element={<JourneyOfWater />}
-          />
+          path="/irigasi"
+          element={<JourneyOfWater />}
+        />
+
         <Route path="/isu" element={<IssuesPage />} />
         <Route path="/isu/:slug" element={<IssueDetail />} />
-    
+
         <Route path="/green-action" element={<GreenActionPage />} />
-        
+
         <Route
           path="/galeri"
-          element={<StoriesGallery/> }
+          element={<StoriesGallery />}
         />
+
         <Route
           path="/peta-subak"
-          element={<TourismMap/> }
+          element={<TourismMap />}
         />
+
         <Route
           path="/komunitas"
-          element={<SubakConnect/> }
+          element={<SubakConnect />}
         />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );

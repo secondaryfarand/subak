@@ -283,3 +283,38 @@
     display: flex;
   }
 }
+
+
+.themeToggle,
+.mobileThemeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border, rgba(23, 61, 50, 0.2));
+  background: transparent;
+  color: var(--color-text, #173d32);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.themeToggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.35rem;
+}
+
+.themeToggle:hover,
+.mobileThemeToggle:hover {
+  background: var(--color-sage, #e8eee5);
+  transform: translateY(-2px);
+}
+
+.mobileThemeToggle {
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}

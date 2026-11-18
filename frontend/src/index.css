@@ -1,21 +1,23 @@
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
+/* ==========================================================================
+   1. LIGHT MODE — DEFAULT
+   ========================================================================== */
 
 :root {
+  --color-forest: #173D2B;
+  --color-leaf: #527B50;
+  --color-sage: #A7B98A;
+  --color-cream: #F5F1E5;
+  --color-cream-light: #FAF8F2;
 
-  --color-forest: #173D2B;       /* Hijau hutan tua (Teks utama / Primary Dark) */
-  --color-leaf: #527B50;         /* Hijau daun sawah (Aksen utama / Interactive) */
-  --color-sage: #A7B98A;         /* Hijau lembut (Aksen sekunder / Highlight) */
-  --color-cream: #F5F1E5;        /* Krem alami (Latar belakang utama / Canvas) */
-  --color-cream-light: #FAF8F2;  /* Permukaan kartu (Surface / Elevated) */
-
-  /* --- Semantic Tokens (Light Mode Default) --- */
   --bg: var(--color-cream);
   --bg-surface: var(--color-cream-light);
-  --bg-subtle: rgba(167, 185, 138, 0.18); /* Tint lembut dari Sage */
-  
-  --text: #3A4D42;               /* Hijau keabu-abuan gelap agar nyaman dibaca */
-  --text-h: var(--color-forest); /* Judul menggunakan Forest tegas */
+  --bg-subtle: rgba(167, 185, 138, 0.18);
+
+  --text: #3A4D42;
+  --text-h: var(--color-forest);
   --text-muted: #687A6F;
 
   --accent: var(--color-leaf);
@@ -27,35 +29,32 @@
   --border-strong: rgba(23, 61, 43, 0.25);
   --code-bg: rgba(167, 185, 138, 0.22);
 
-  /* --- Elevasi & Bayangan Organik --- */
   --shadow-sm: 0 2px 8px rgba(23, 61, 43, 0.04);
-  --shadow: 0 12px 28px -6px rgba(23, 61, 43, 0.08), 
+  --shadow: 0 12px 28px -6px rgba(23, 61, 43, 0.08),
             0 4px 10px -2px rgba(23, 61, 43, 0.04);
 
-  /* --- Definisi Variabel Font (Serif & Sans-Serif) --- */
+  /* Font */
   --font-serif-playfair: 'Playfair Display', Georgia, serif;
   --font-serif-dm: 'DM Serif Display', Georgia, serif;
   --font-sans-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-sans-inter: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
 
-  /* --- Alias Peran Tipografi (Ubah di sini untuk mengganti gaya global) --- */
-  --font-heading: var(--font-serif-playfair);   /* Alternatif: var(--font-serif-dm) */
-  --font-body: var(--font-sans-jakarta);        /* Alternatif: var(--font-sans-inter) */
-  --font-stat: var(--font-sans-jakarta);        /* Khusus angka dan statistik */
+  --font-heading: var(--font-serif-playfair);
+  --font-body: var(--font-sans-jakarta);
+  --font-stat: var(--font-sans-jakarta);
 
-  /* --- Tata Letak & Ruang Kosong Editorial --- */
+  /* Layout */
   --container-max: 1200px;
-  --section-gap: clamp(4rem, 8vw, 7rem); /* Whitespace luas khas editorial */
+  --section-gap: clamp(4rem, 8vw, 7rem);
   --radius-sm: 8px;
-  --radius-md: 14px;                     /* Rounded card secukupnya */
+  --radius-md: 14px;
   --radius-lg: 20px;
   --transition-smooth: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* --- Base Rendering --- */
   font: 17px/1.65 var(--font-body);
   letter-spacing: -0.01em;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background-color: var(--bg);
   font-synthesis: none;
@@ -64,6 +63,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   2. DARK MODE — MANUAL TOGGLE
+   ========================================================================== */
+
+:root[data-theme="dark"] {
+  --bg: #0F1C15;
+  --bg-surface: #16281E;
+  --bg-subtle: rgba(167, 185, 138, 0.08);
+
+  --text: #C4D1C7;
+  --text-h: var(--color-cream);
+  --text-muted: #8FA395;
+
+  --accent: var(--color-sage);
+  --accent-hover: #BFD0A5;
+  --accent-bg: rgba(167, 185, 138, 0.14);
+  --accent-border: rgba(167, 185, 138, 0.35);
+
+  --border: rgba(245, 241, 229, 0.1);
+  --border-strong: rgba(245, 241, 229, 0.22);
+  --code-bg: rgba(245, 241, 229, 0.08);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.45),
+            0 4px 12px -2px rgba(0, 0, 0, 0.3);
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE BASE
+   ========================================================================== */
+
 @media (max-width: 1024px) {
   :root {
     font-size: 16px;
@@ -71,36 +103,9 @@
 }
 
 /* ==========================================================================
-   3. DARK MODE (Nuansa Sawah Malam / Hutan Tropis Teduh)
-   ========================================================================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0F1C15;               /* Turunan gelap dari Forest */
-    --bg-surface: #16281E;       /* Kartu sedikit lebih terang */
-    --bg-subtle: rgba(167, 185, 138, 0.08);
-
-    --text: #C4D1C7;
-    --text-h: var(--color-cream);
-    --text-muted: #8FA395;
-
-    --accent: var(--color-sage);
-    --accent-hover: #BFD0A5;
-    --accent-bg: rgba(167, 185, 138, 0.14);
-    --accent-border: rgba(167, 185, 138, 0.35);
-
-    --border: rgba(245, 241, 229, 0.1);
-    --border-strong: rgba(245, 241, 229, 0.22);
-    --code-bg: rgba(245, 241, 229, 0.08);
-
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-    --shadow: 0 14px 32px -6px rgba(0, 0, 0, 0.45), 
-              0 4px 12px -2px rgba(0, 0, 0, 0.3);
-  }
-}
-
-/* ==========================================================================
    4. GLOBAL RESET & SMOOTH SCROLL
    ========================================================================== */
+
 *,
 *::before,
 *::after {
@@ -108,7 +113,7 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Animasi scroll yang lembut */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -116,6 +121,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 #root {
@@ -125,7 +131,6 @@ body {
   flex-direction: column;
 }
 
-/* Foto alam Bali yang responsif dan bersih */
 img,
 picture,
 video {
@@ -137,6 +142,7 @@ video {
 /* ==========================================================================
    5. TYPOGRAPHY SYSTEM
    ========================================================================== */
+
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -163,7 +169,7 @@ h3 {
 
 p {
   margin: 0;
-  max-width: 68ch; /* Lebar baris ideal untuk kenyamanan membaca editorial */
+  max-width: 68ch;
 }
 
 a {
@@ -176,7 +182,6 @@ a:hover {
   color: var(--accent-hover);
 }
 
-/* Angka & Statistik (Plus Jakarta Sans dengan Tabular Numerals) */
 .stat-number {
   font-family: var(--font-stat);
   font-weight: 700;
@@ -195,8 +200,9 @@ code {
 }
 
 /* ==========================================================================
-   6. FONT UTILITY CLASSES (Untuk Kombinasi Cepat di JSX / HTML)
+   6. FONT UTILITY CLASSES
    ========================================================================== */
+
 .font-playfair {
   font-family: var(--font-serif-playfair);
 }
@@ -216,6 +222,7 @@ code {
 /* ==========================================================================
    7. EDITORIAL LAYOUT & REUSABLE UI PRIMITIVES
    ========================================================================== */
+
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -227,7 +234,6 @@ code {
   padding-block: var(--section-gap);
 }
 
-/* Kartu minimalis dengan rounded secukupnya */
 .card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
@@ -243,7 +249,10 @@ code {
   border-color: var(--accent-border);
 }
 
-/* Tombol utama bernuansa alam */
+/* ==========================================================================
+   8. BUTTON SYSTEM
+   ========================================================================== */
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -267,7 +276,6 @@ code {
   transform: translateY(-1px);
 }
 
-/* Tombol sekunder (Outline / Sage tint) */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
