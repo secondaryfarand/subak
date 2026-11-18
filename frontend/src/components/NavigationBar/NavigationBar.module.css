@@ -1,16 +1,30 @@
 /* ==========================================================================
-   STICKY EDITORIAL NAVBAR
+   FIXED & TRANSPARENT-TO-SOLID EDITORIAL NAVBAR
    ========================================================================== */
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  background-color: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
   padding-block: 1.15rem;
   transition: var(--transition-smooth);
+}
+
+/* Kondisi 1: Transparan penuh di paling atas (tanpa scroll) */
+.transparent {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Kondisi 2: Gaya solid/frosted (saat di-scroll atau di halaman selain Beranda) */
+.solid {
+  background-color: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .scrolled {
@@ -38,6 +52,7 @@
   z-index: 110;
   display: inline-flex;
   align-items: baseline;
+  transition: var(--transition-smooth);
 }
 
 .logo:hover {
@@ -48,6 +63,17 @@
   color: var(--accent);
   font-size: 1.9rem;
   line-height: 0;
+  transition: var(--transition-smooth);
+}
+
+/* Override warna putih saat transparan */
+.transparent .logo,
+.transparent .logo:hover {
+  color: #ffffff;
+}
+
+.transparent .logoDot {
+  color: var(--color-sage);
 }
 
 /* ==========================================================================
@@ -81,7 +107,6 @@
   color: var(--text-h);
 }
 
-/* Garis indikator bawah yang tumbuh halus */
 .navLink::after {
   content: '';
   position: absolute;
@@ -107,6 +132,20 @@
   font-weight: 600;
 }
 
+/* Link putih saat transparan */
+.transparent .navLink {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.transparent .navLink:hover,
+.transparent .activeLink {
+  color: #ffffff;
+}
+
+.transparent .navLink::after {
+  background-color: #ffffff;
+}
+
 /* ==========================================================================
    ACTIONS & HAMBURGER BUTTON
    ========================================================================== */
@@ -115,6 +154,19 @@
   align-items: center;
   gap: 1rem;
   z-index: 110;
+}
+
+/* Tombol CTA berubah menjadi kaca transparan ber-outline putih saat di puncak Hero */
+.transparent .desktopCta {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+}
+
+.transparent .desktopCta:hover {
+  background-color: #ffffff;
+  color: var(--color-forest);
 }
 
 .hamburger {
@@ -144,6 +196,16 @@
   background-color: var(--text-h);
   border-radius: 2px;
   transition: var(--transition-smooth);
+}
+
+/* Hamburger putih transparan di atas Hero Video */
+.transparent .hamburger {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.transparent .bar {
+  background-color: #ffffff;
 }
 
 /* Animasi Hamburger ke Silang (X) */
@@ -282,4 +344,50 @@
   .hamburger {
     display: flex;
   }
+}
+
+
+.themeToggle,
+.mobileThemeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border, rgba(23, 61, 50, 0.2));
+  background: transparent;
+  color: var(--color-text, #173d32);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.themeToggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.35rem;
+}
+
+.themeToggle:hover,
+.mobileThemeToggle:hover {
+  background: var(--color-sage, #e8eee5);
+  transform: translateY(-2px);
+}
+
+.mobileThemeToggle {
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.transparent .themeToggle {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.transparent .themeToggle:hover {
+  background-color: #ffffff;
+  color: var(--color-forest);
 }
