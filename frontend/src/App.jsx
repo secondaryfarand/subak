@@ -12,7 +12,7 @@ import IssuesPage from './features/Issues/pages/IssuesPage';
 import IssueDetail from './features/Issues/pages/IssueDetail';
 import SubakConnect from './features/Community/pages/SubakConnect';
 import GreenActionPage from './features/GreenAction/pages/GreenActionPage';
-
+import AmbientPlayer from './components/AmbientPlayer/AmbientPlayer';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -65,6 +65,8 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+
+      <AmbientPlayer />
 
       <NavigationBar
         theme={theme}
