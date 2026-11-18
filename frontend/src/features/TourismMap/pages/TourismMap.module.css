@@ -1,10 +1,7 @@
-/* ==========================================================================
-   PAGE HEADER & FILTER CONTROLS
-   ========================================================================== */
 .pageContainer {
   background-color: var(--bg);
   min-height: 100svh;
-  padding-top: 84px;
+  /* padding-top: 84px; */
   padding-bottom: var(--section-gap);
 }
 
@@ -45,7 +42,6 @@
   color: var(--text);
 }
 
-/* Tombol Toggle Aliran Air Hulu-Hilir */
 .watershedToggle {
   display: inline-flex;
   align-items: center;
@@ -79,7 +75,6 @@
   background-color: var(--accent);
 }
 
-/* Filter Kategori */
 .filterBar {
   display: flex;
   flex-wrap: wrap;
@@ -110,10 +105,6 @@
   color: var(--color-cream);
   border-color: var(--color-forest);
 }
-
-/* ==========================================================================
-   MAIN MAP & EDITORIAL PANEL GRID
-   ========================================================================== */
 .mapWorkspace {
   padding-top: 2.25rem;
 }
@@ -125,7 +116,6 @@
   align-items: start;
 }
 
-/* Kolom Kiri: Peta */
 .mapColumn {
   display: flex;
   flex-direction: column;
@@ -200,7 +190,6 @@
   border-top: 3px dashed var(--color-leaf);
 }
 
-/* Mini Cards Selector di Bawah Peta */
 .spotSelectorGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -252,9 +241,6 @@
   font-weight: 600;
 }
 
-/* ==========================================================================
-   KOLOM KANAN: DETAIL PANEL & ETIKA BERWISATA
-   ========================================================================== */
 .detailPanel {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
@@ -306,7 +292,6 @@
   font-size: 1.75rem;
 }
 
-/* Tabs */
 .detailTabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -499,9 +484,6 @@
   text-align: center;
 }
 
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
 @media (max-width: 1024px) {
   .workspaceGrid {
     grid-template-columns: 1fr;

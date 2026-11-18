@@ -6,6 +6,7 @@ import EditorialIntroSection from '../components/EditorialIntroSection';
 import InteractiveSolutionsSection from '../components/InteractiveSolutionsSection';
 import FieldShowcaseBanner from '../components/FieldShowcaseBanner';
 import FarmerVoicesSection from '../components/FarmerVoicesSection';
+import TerraceParallaxDivider from '../components/TerraceParallaxDivider';
 
 const LandingPage = ({ theme }) => {
   return (
@@ -35,6 +36,8 @@ const LandingPage = ({ theme }) => {
             </div>
           </section>
         </ScrollReveal>
+
+        <TerraceParallaxDivider />
 
         {/* 3. Child: Editorial Split Narasi + 3 Kartu Foto */}
         <ScrollReveal delay={100}>

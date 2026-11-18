@@ -24,7 +24,7 @@
 
 .hero {
   min-height: 610px;
-  padding: 280px max(8%, calc((100% - 1250px) / 2)) 95px;
+  padding: 80px max(8%, calc((100% - 1250px) / 2)) 95px;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: center;

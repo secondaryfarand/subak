@@ -7,7 +7,7 @@
 }
 
 .heroSection {
-  padding-top: clamp(8.5rem, 5vw, 4.5rem);
+  padding-top: clamp(1.5rem, 5vw, 4.5rem);
   padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
