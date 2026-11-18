@@ -1,0 +1,117 @@
+.solutionsSection {
+  background-color: var(--bg);
+}
+
+.topHeader {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+.tagLabel {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-top: 0.4rem;
+}
+
+.introBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  color: var(--text-h);
+  max-width: 24ch;
+}
+
+.sectionSubtitle {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.accordionList {
+  margin-left: 220px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.accordionItem {
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  transition: var(--transition-smooth);
+}
+
+.accordionItemActive {
+  background-color: var(--color-sage);
+  border-radius: var(--radius-md);
+  border-bottom-color: transparent;
+  margin-block: 0.35rem;
+}
+
+.accordionTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.45rem 1.5rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-h);
+}
+
+.accordionItemActive .accordionTrigger {
+  color: var(--color-forest);
+  padding-bottom: 0.65rem;
+}
+
+.itemTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+  font-weight: 600;
+}
+
+.arrowIcon {
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.accordionPanel {
+  padding: 0 1.5rem 1.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.itemSummary {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.itemDetail {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #1f3529;
+}
+
+@media (max-width: 900px) {
+  .topHeader {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .accordionList {
+    margin-left: 0;
+  }
+}

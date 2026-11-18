@@ -1,13 +1,8 @@
-/* ==========================================================================
-   1. GOOGLE FONTS IMPORT (Serif & Sans-Serif Lengkap)
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-/* ==========================================================================
-   2. DESIGN TOKENS & CSS VARIABLES (Tema: Subak Bali)
-   ========================================================================== */
+
 :root {
-  /* --- Palet Warna Utama --- */
+
   --color-forest: #173D2B;       /* Hijau hutan tua (Teks utama / Primary Dark) */
   --color-leaf: #527B50;         /* Hijau daun sawah (Aksen utama / Interactive) */
   --color-sage: #A7B98A;         /* Hijau lembut (Aksen sekunder / Highlight) */
