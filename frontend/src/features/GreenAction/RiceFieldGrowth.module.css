@@ -1,0 +1,20 @@
+.scene { max-width: 100%; margin: 0; padding: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-surface); box-shadow: 0 14px 36px rgb(42 62 45 / 7%); }
+.heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.heading h2 { margin: 0 0 .35rem; color: var(--text-h); font-family: var(--font-heading); font-size: clamp(1.45rem, 3vw, 2rem); }
+.heading p:not(.eyebrow) { margin: 0; color: var(--text-muted); }
+.eyebrow { margin: 0 0 .35rem; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+.live { flex: 0 0 auto; padding: .4rem .75rem; border-radius: 999px; background: var(--accent-bg); color: var(--accent); font-size: .85rem; font-weight: 750; }
+.artFrame { overflow: hidden; border-radius: calc(var(--radius-lg) - 4px); background: #dce8dc; }
+.art { display: block; width: 100%; height: auto; }
+.waterFill { transition: opacity .75s ease; }
+.channel { transition: stroke .75s ease; }
+.trash { transition: opacity .65s ease; }
+.rice, .farmer { transition: opacity .7s ease, transform .7s ease; transform-box: fill-box; }
+.legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: .85rem 0 0; padding: 0; list-style: none; }
+.legend li { display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: .45rem; padding: .55rem .6rem; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: .82rem; color: var(--text-muted); }
+.legend strong { color: var(--text-h); font-variant-numeric: tabular-nums; }
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.blue { background: #5ba7b5; }.teal { background: #83bcb0; }.sand { background: #b99b65; }.green { background: #6e9565; }
+@media (max-width: 900px) { .scene { padding: 1rem; } }
+@media (max-width: 700px) { .scene { padding: .9rem; } .heading { align-items: flex-start; flex-direction: column; } .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); } .legend li { font-size: .76rem; } }
+@media (prefers-reduced-motion: reduce) { .waterFill, .channel, .trash, .rice, .farmer { transition: none; } }

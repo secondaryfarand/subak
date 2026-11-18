@@ -11,6 +11,8 @@ import IssuesPage from './features/Issues/pages/IssuesPage';
 import IssueDetail from './features/Issues/pages/IssueDetail';
 import SubakConnect from './features/Community/pages/SubakConnect';
 import GreenActionPage from './features/GreenAction/pages/GreenActionPage';
+import GreenActionActionsPage from './features/GreenAction/pages/GreenActionActionsPage';
+import GreenActionQuizPage from './features/GreenAction/pages/GreenActionQuizPage';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -73,6 +75,8 @@ function App() {
         <Route path="/isu/:slug" element={<IssueDetail />} />
     
         <Route path="/green-action" element={<GreenActionPage />} />
+        <Route path="/green-action/aksi" element={<GreenActionActionsPage />} />
+        <Route path="/green-action/kuis" element={<GreenActionQuizPage />} />
         
         <Route
           path="/galeri"

@@ -1,131 +1,107 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { ACTIONS, CATEGORIES, ROLES, BADGES } from '../data/actionsData';
-import { getIssue } from '../../Issues/data/issuesData';
-import styles from './GreenAction.module.css';
+import { Link } from 'react-router-dom';
+import { ACTIONS } from '../data/actionsData';
+import styles from './GreenActionHub.module.css';
 
-const KEY = 'subak-green-actions';
-const load = () => {
-  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; }
+const STORAGE_KEY = 'subak-green-actions';
+
+const readCompletedActions = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return ACTIONS.filter((action) => saved[action.id]).length;
+  } catch {
+    return 0;
+  }
 };
 
 const GreenActionPage = () => {
-  const [params, setParams] = useSearchParams();
-  const focus = params.get('isu');
-  const focusIssue = focus ? getIssue(focus) : null;
-  const [role, setRole] = useState('all');
-  const [done, setDone] = useState(load);
-  const [name, setName] = useState('');
-  const [pledged, setPledged] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [completed, setCompleted] = useState(readCompletedActions);
 
   useEffect(() => {
-    try { localStorage.setItem(KEY, JSON.stringify(done)); } catch { /* abaikan */ }
-  }, [done]);
-
-  const visible = ACTIONS.filter((a) => role === 'all' || !a.roles || a.roles.includes(role));
-  const count = visible.filter((a) => done[a.id]).length;
-  const ratio = count / visible.length;
-  const toggle = (id) => setDone((d) => ({ ...d, [id]: !d[id] }));
-  const pledge = `Aku, ${name.trim() || 'seorang sahabat Subak'}, berjanji ikut menjaga air dan sawah Bali. ${count} dari ${visible.length} aksi sudah kulakukan.`;
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(pledge); setCopied(true); } catch { setCopied(false); }
-  };
+    const refresh = () => setCompleted(readCompletedActions());
+    window.addEventListener('focus', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('focus', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
 
   return (
     <main className={styles.page}>
       <header className={`container ${styles.hero}`}>
-        <h1>Dari tahu menjadi bertindak</h1>
+        <span className={styles.eyebrow}>GERAKAN SAHABAT SUBAK</span>
+        <h1>Mulai langkah kecilmu untuk menjaga Subak.</h1>
         <p>
-          Subak tidak terselamatkan oleh satu orang besar, tetapi oleh banyak kebiasaan kecil.
-          Pilih perananmu, lalu centang aksi yang sudah kamu lakukan.
+          Pilih cara berpartisipasi. Kamu bisa mulai dari aksi nyata dan ikrar,
+          atau menguji keputusanmu melalui situasi yang dekat dengan kehidupan Subak.
         </p>
-        <div className={styles.chips} role="group" aria-label="Pilih peran">
-          {ROLES.map((r) => (
-            <button
-              key={r.id}
-              type="button"
-              aria-pressed={role === r.id}
-              className={`${styles.chip} ${role === r.id ? styles.chipOn : ''}`}
-              onClick={() => setRole(r.id)}
-            >
-              {r.label}
-            </button>
-          ))}
-        </div>
-        {focusIssue && (
-          <p className={styles.focus}>
-            Kamu datang dari isu &ldquo;{focusIssue.title}&rdquo;. Aksi yang terkait diberi tanda.{' '}
-            <button type="button" onClick={() => setParams({})}>Hapus tanda</button>
-          </p>
-        )}
       </header>
 
-      <div className={styles.progress}>
-        <div className={`container ${styles.progressInner}`}>
-          <div
-            className={styles.bar}
-            role="progressbar"
-            aria-valuemin={0}
-            aria-valuemax={visible.length}
-            aria-valuenow={count}
-            aria-label="Progres aksi"
-          >
-            <div className={styles.barFill} style={{ width: `${ratio * 100}%` }} />
+      <section className={`container ${styles.cards}`} aria-label="Pilihan kegiatan kampanye">
+        <Link to="/green-action/aksi" className={`${styles.card} ${styles.actionCard}`}>
+          <div className={styles.cardTop}>
+            <span className={styles.number}>01 / AKSI NYATA</span>
+            <span className={styles.arrow} aria-hidden="true">↗</span>
           </div>
-          <p className={styles.count}><strong>{count}</strong> dari {visible.length} aksi</p>
-          <ul className={styles.badges}>
-            {BADGES.map((b) => (
-              <li key={b.name} className={ratio >= b.min && count > 0 ? styles.badgeOn : ''}>{b.name}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className={`container ${styles.lists}`}>
-        {CATEGORIES.map((c) => {
-          const items = visible.filter((a) => a.cat === c.id);
-          if (!items.length) return null;
-          return (
-            <section key={c.id}>
-              <h2>{c.title}</h2>
-              <ul className={styles.items}>
-                {items.map((a) => (
-                  <li key={a.id} className={`${styles.item} ${focus === c.issue ? styles.mark : ''}`}>
-                    <label>
-                      <input type="checkbox" checked={!!done[a.id]} onChange={() => toggle(a.id)} />
-                      <span>{a.text}</span>
-                    </label>
-                  </li>
-                ))}
-              </ul>
-              <Link to={`/isu/${c.issue}`} className={styles.why}>
-                Kenapa ini penting: {getIssue(c.issue)?.title}
-              </Link>
-            </section>
-          );
-        })}
-      </div>
-
-      <section className={`container ${styles.pledge}`}>
-        <h2>Ikrar sahabat Subak</h2>
-        <label htmlFor="nama">Namamu (boleh dikosongkan)</label>
-        <input id="nama" type="text" value={name} maxLength={40} onChange={(e) => { setName(e.target.value); setCopied(false); }} />
-        <button type="button" className="btn-primary" onClick={() => setPledged(true)}>Aku berjanji</button>
-        {pledged && (
-          <div className={styles.card} aria-live="polite">
-            <p>{pledge}</p>
-            <button type="button" className="btn-secondary" onClick={copy}>
-              {copied ? 'Tersalin' : 'Salin ikrar'}
-            </button>
+          <div className={styles.illustration} aria-hidden="true">
+            <svg viewBox="0 0 320 150" role="img">
+              <path d="M12 118 Q75 88 145 112 T308 104" fill="none" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 132 Q80 102 150 126 T308 118" fill="none" stroke="currentColor" strokeWidth="2" opacity=".55"/>
+              <path d="M35 105 Q80 65 130 88 T225 82 T300 70" fill="none" stroke="currentColor" strokeWidth="3"/>
+              <path d="M74 91 Q72 67 59 55 M74 91 Q89 66 104 58 M74 91 Q73 61 77 42" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M190 88 Q187 63 174 52 M190 88 Q205 62 220 54 M190 88 Q190 58 194 39" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="260" cy="35" r="16" fill="currentColor" opacity=".18"/>
+              <path d="M253 35h14M260 28v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
           </div>
-        )}
+          <div className={styles.cardBody}>
+            <h2>Aksi & Ikrar Sahabat Subak</h2>
+            <p>
+              Centang kebiasaan baikmu, lihat sawah tumbuh bersamamu, lalu buat
+              poster ikrar yang bisa dibagikan.
+            </p>
+            <div className={styles.cardFoot}>
+              <span>{completed} aksi telah kamu lakukan</span>
+              <strong>Mulai beraksi <span aria-hidden="true">→</span></strong>
+            </div>
+          </div>
+        </Link>
+
+        <Link to="/green-action/kuis" className={`${styles.card} ${styles.quizCard}`}>
+          <div className={styles.cardTop}>
+            <span className={styles.number}>02 / UJI PILIHANMU</span>
+            <span className={styles.arrow} aria-hidden="true">↗</span>
+          </div>
+          <div className={styles.illustration} aria-hidden="true">
+            <svg viewBox="0 0 320 150" role="img">
+              <path d="M24 120 Q92 88 160 112 T296 96" fill="none" stroke="currentColor" strokeWidth="3"/>
+              <path d="M35 130 Q100 100 165 124 T290 110" fill="none" stroke="currentColor" strokeWidth="2" opacity=".5"/>
+              <path d="M110 32h100a15 15 0 0 1 15 15v39a15 15 0 0 1-15 15h-38l-22 19V101h-40a15 15 0 0 1-15-15V47a15 15 0 0 1 15-15Z" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+              <path d="M132 62h52M132 78h34" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="245" cy="39" r="17" fill="currentColor" opacity=".18"/>
+              <path d="m238 39 5 5 10-11" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className={styles.cardBody}>
+            <h2>Kamu Akan Melakukan Apa?</h2>
+            <p>
+              Hadapi lima situasi di kawasan Subak. Pilih tindakanmu dan
+              temukan alasan di balik etika berkunjung.
+            </p>
+            <div className={styles.cardFoot}>
+              <span>5 skenario interaktif</span>
+              <strong>Mulai belajar <span aria-hidden="true">→</span></strong>
+            </div>
+          </div>
+        </Link>
       </section>
 
-      <section className={`container ${styles.more}`}>
+      <section className={`container ${styles.note}`}>
+        <span aria-hidden="true">✳</span>
         <p>
-          Mau melangkah lebih jauh? <Link to="/peta-subak">Kunjungi Subak dengan etika</Link> atau{' '}
-          <Link to="/galeri">baca kisah para petani</Link>.
+          Setiap tindakan kecil berarti. Kenali Subak, hormati ruang hidup petani,
+          dan bantu warisan ini tetap tumbuh.
         </p>
       </section>
     </main>
