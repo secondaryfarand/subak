@@ -1,28 +1,31 @@
-/* ==========================================================================
-   BRIGHT CANVAS & APP SHELL (Kanvas Cerah Cream + Surface Putih Hangat)
-   ========================================================================== */
 .brightCanvas {
-  background-color: var(--color-cream);
+  background-color: var(--color-cream-light);
   color: #2c3e35;
-  padding-block: clamp(1.75rem, 3.5vw, 3rem) var(--section-gap);
-  min-height: 100svh;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: calc(100svh - 72px);
 }
 
 .appShell {
+  width: 100%;
   background-color: var(--color-cream-light);
-  border: 1px solid rgba(23, 61, 43, 0.14);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px -12px rgba(23, 61, 43, 0.09);
-  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* Top Search Bar di Dalam App Shell */
+/* Top Search Bar menempel penuh di bagian atas */
 .shellTopBar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.9rem 1.5rem;
+  width: 100%;
+  padding: 0.85rem 2rem;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(23, 61, 43, 0.1);
 }
@@ -37,7 +40,7 @@
 .searchWrapper {
   position: relative;
   flex: 1;
-  max-width: 520px;
+  max-width: 600px;
   margin-inline: auto;
 }
 
@@ -54,7 +57,7 @@
   width: 100%;
   font-family: var(--font-body);
   font-size: 0.88rem;
-  padding: 0.55rem 1rem 0.55rem 2.3rem;
+  padding: 0.58rem 1rem 0.58rem 2.35rem;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(23, 61, 43, 0.14);
   background-color: var(--color-cream-light);
@@ -72,7 +75,7 @@
   font-family: var(--font-body);
   font-size: 0.84rem;
   font-weight: 600;
-  padding: 0.52rem 1rem;
+  padding: 0.55rem 1.1rem;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(82, 123, 80, 0.4);
   background-color: rgba(167, 185, 138, 0.2);
@@ -87,22 +90,28 @@
 }
 
 /* ==========================================================================
-   3-COLUMN COMMUNITY LAYOUT
+   3-COLUMN FULL-SCREEN GRID (Sidebar menempel di tepi paling kiri)
    ========================================================================== */
 .shellGrid {
   display: grid;
-  grid-template-columns: 245px minmax(0, 1fr) 295px;
-  min-height: 760px;
+  grid-template-columns: 270px minmax(0, 1fr) 330px;
+  width: 100%;
+  min-height: calc(100svh - 130px);
+  align-items: start;
 }
 
-/* --- KOLOM 1: LEFT SIDEBAR --- */
+/* --- KOLOM 1: LEFT SIDEBAR (Rapat ke Tepi Kiri Layar) --- */
 .leftSidebar {
+  position: sticky;
+  top: 61px;
+  height: calc(100svh - 61px);
+  overflow-y: auto;
   background-color: #ffffff;
   border-right: 1px solid rgba(23, 61, 43, 0.1);
-  padding: 1.35rem 1rem;
+  padding: 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.65rem;
+  gap: 1.75rem;
 }
 
 .workspaceHeader {
@@ -240,14 +249,15 @@
   color: var(--color-leaf);
 }
 
-/* --- KOLOM 2: CENTER COMMUNITY FEED --- */
 .centerFeed {
-  padding: clamp(1.25rem, 2.5vw, 1.85rem);
+  padding: 1.75rem clamp(1.5rem, 3vw, 3rem);
+  max-width: 920px;
+  width: 100%;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.35rem;
+  gap: 1.45rem;
 }
-
 .feedHeader {
   display: flex;
   align-items: center;
@@ -579,9 +589,10 @@
   color: #687a6f;
 }
 
-/* --- KOLOM 3: RIGHT WIDGETS --- */
 .rightWidgets {
-  padding: 1.35rem 1.25rem 1.35rem 0;
+  position: sticky;
+  top: 61px;
+  padding: 1.75rem 1.75rem 2rem 0;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;

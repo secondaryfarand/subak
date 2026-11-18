@@ -93,61 +93,59 @@ const SubakConnect = () => {
 
   return (
     <main className={styles.brightCanvas}>
-      <div className="container">
-        {/* Bingkai Aplikasi Komunitas Cerah (Mirip Referensi Gambar 2) */}
-        <div className={styles.appShell}>
-          {/* Top Search & Utility Bar */}
-          <div className={styles.shellTopBar}>
-            <div className={styles.shellBrandMobile}>
-              <strong>SUBAK CONNECT</strong>
-            </div>
-
-            <div className={styles.searchWrapper}>
-              <span className={styles.searchIcon} aria-hidden="true">
-                ⌕
-              </span>
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari diskusi pertanian, jadwal subak, atau laporan irigasi..."
-                className={styles.searchInput}
-              />
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setIsReportModalOpen(true)}
-              className={styles.topReportBtn}
-            >
-              Lapor Irigasi
-            </button>
+      {/* Bingkai Aplikasi Komunitas Full-Width (Edge-to-Edge) */}
+      <div className={styles.appShell}>
+        {/* Top Search & Utility Bar */}
+        <div className={styles.shellTopBar}>
+          <div className={styles.shellBrandMobile}>
+            <strong>SUBAK CONNECT</strong>
           </div>
 
-          {/* Grid Utama 3 Kolom */}
-          <div className={styles.shellGrid}>
-            <ConnectSidebar
-              activeMenu={activeMenu}
-              onSelectMenu={setActiveMenu}
-              onOpenReportModal={() => setIsReportModalOpen(true)}
-              reportCount={reportCount}
-            />
-
-            <CommunityFeed
-              posts={posts}
-              activeMenu={activeMenu}
-              searchQuery={searchQuery}
-              onToggleLike={handleToggleLike}
-              onAddComment={handleAddComment}
-              onCreatePost={handleCreatePost}
-              onOpenReportModal={() => setIsReportModalOpen(true)}
-            />
-
-            <ConnectRightWidgets
-              posts={posts}
-              onSelectPost={(title) => setSearchQuery(title)}
+          <div className={styles.searchWrapper}>
+            <span className={styles.searchIcon} aria-hidden="true">
+              ⌕
+            </span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari diskusi pertanian, jadwal subak, atau laporan irigasi..."
+              className={styles.searchInput}
             />
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsReportModalOpen(true)}
+            className={styles.topReportBtn}
+          >
+            Lapor Irigasi
+          </button>
+        </div>
+
+        {/* Grid Utama 3 Kolom Full-Screen */}
+        <div className={styles.shellGrid}>
+          <ConnectSidebar
+            activeMenu={activeMenu}
+            onSelectMenu={setActiveMenu}
+            onOpenReportModal={() => setIsReportModalOpen(true)}
+            reportCount={reportCount}
+          />
+
+          <CommunityFeed
+            posts={posts}
+            activeMenu={activeMenu}
+            searchQuery={searchQuery}
+            onToggleLike={handleToggleLike}
+            onAddComment={handleAddComment}
+            onCreatePost={handleCreatePost}
+            onOpenReportModal={() => setIsReportModalOpen(true)}
+          />
+
+          <ConnectRightWidgets
+            posts={posts}
+            onSelectPost={(title) => setSearchQuery(title)}
+          />
         </div>
       </div>
 
