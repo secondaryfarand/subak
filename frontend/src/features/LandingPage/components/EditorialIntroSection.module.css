@@ -1,0 +1,111 @@
+.introSection {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.splitGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-bottom: clamp(2.75rem, 5vw, 4rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  color: var(--text-h);
+  line-height: 1.16;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.bodyText {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.storyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: var(--text-h);
+  width: fit-content;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border-strong);
+  transition: var(--transition-smooth);
+}
+
+.storyLink:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  gap: 0.8rem;
+}
+
+/* 3 Kartu Foto */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.photoCard {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.imageFrame {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--bg-subtle);
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoCard:hover .photoImg {
+  transform: scale(1.04);
+}
+
+.photoCaption {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+@media (max-width: 860px) {
+  .splitGrid,
+  .photoGrid {
+    grid-template-columns: 1fr;
+  }
+}
