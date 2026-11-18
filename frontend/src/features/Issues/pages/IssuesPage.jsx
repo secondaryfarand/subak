@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ISSUES, HERO_FIGURE } from '../data/issuesData';
-import { FactBanner, DominoChain, Timeline } from '../components/IssueExtras';
+import { WaterThread, GuessGame, FactBanner, DominoChain, Timeline } from '../components/IssueExtras';
 import styles from './Issues.module.css';
 
 const ROWS = [380, 430, 350, 440, 400, 360];
@@ -35,7 +35,7 @@ const TerraceChart = () => (
       })}
     </svg>
     <figcaption>
-      <strong>80.063 ha → 64.474 ha</strong> luas sawah Bali, 2015–2024.
+      Luas sawah Bali, 2015–2024. Garis putus: 2015, pita hijau: 2024.
       <br />
       Sumber: {HERO_FIGURE.source}
     </figcaption>
@@ -49,6 +49,7 @@ const IssuesPage = () => {
 
   return (
     <main className={styles.page}>
+      <WaterThread />
       <section className={styles.hero}>
         <div className={`container ${styles.heroGrid}`}>
           <div>
@@ -64,6 +65,7 @@ const IssuesPage = () => {
         </div>
       </section>
 
+      <GuessGame />
       <FactBanner />
 
       <section id="daftar-isu" className={`container ${styles.listSection}`}>
@@ -116,7 +118,8 @@ const IssuesPage = () => {
         <p>
           Setiap angka disertai sumber dan tahunnya. Jika sumber berbeda memberi angka berbeda,
           kami menampilkannya sebagai rentang dan menyebut siapa yang mengatakannya. Proyeksi
-          diberi label proyeksi.
+          diberi label proyeksi. Pada layar lebar, garis air di tepi halaman berubah warna: jernih di
+          awal, keruh saat membahas isu, dan kembali jernih saat membahas upaya.
         </p>
       </section>
     </main>

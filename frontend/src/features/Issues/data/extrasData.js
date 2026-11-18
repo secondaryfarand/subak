@@ -23,3 +23,9 @@ export const TIMELINE = [
   { year: '2026', text: 'Perda Bali No. 4 Tahun 2026 mulai mengendalikan alih fungsi lahan produktif.', source: { label: 'RRI, Juli 2026', url: 'https://rri.co.id/denpasar/regional/2597464/koster-paparkan-strategi-amankan-pertanian-dan-alih-fungsi-lahan' } },
   { year: 'Sep 2026', text: 'Secara nasional, usulan lahan sawah berstatus LP2B mencapai 87,52% dari lahan baku sawah (per 6 September).', source: { label: 'Katadata, 7 September 2026', url: 'https://katadata.co.id/berita/industri/6a9e9dd80bca5/pemerintah-amankan-87-lahan-sawah-dari-alih-fungsi-dukung-ketahanan-pangan' } },
 ];
+
+export const GUESS = {
+  from: 80063,
+  to: 64473.63,
+  source: { label: 'Dinas Pertanian dan Ketahanan Pangan Bali, via Mongabay Agustus 2026', url: 'https://mongabay.co.id/2026/08/07/tradisi-subak-terdesak-alih-fungsi-lahan-banjir-sampai-serangan-hama/' },
+};

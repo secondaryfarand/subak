@@ -28,3 +28,27 @@
   .timeline li { grid-template-columns: 1fr; gap: 0.25rem; }
 }
 @media (prefers-reduced-motion: reduce) { .nodeBody { animation: none; } }
+
+.guessLabel { display: block; margin-bottom: 0.5rem; }
+.guessLabel strong { color: var(--text-h); font-size: 1.25rem; font-family: var(--font-heading); }
+.slider { width: 100%; accent-color: var(--accent); margin-bottom: 1.25rem; }
+.bars { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
+.barRow { display: grid; grid-template-columns: 6rem 1fr; align-items: center; gap: 0.75rem; font-size: 0.9rem; }
+.track { height: 1.1rem; background: var(--accent-bg); border-radius: 999px; overflow: hidden; }
+.barGuess, .barReal { height: 100%; border-radius: 999px; transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.barGuess { background: var(--accent-border); }
+.barReal { background: var(--accent); transition-delay: 0.35s; }
+.result { min-height: 1px; margin-bottom: 1.25rem; }
+.result p { margin: 0 0 0.5rem; max-width: 62ch; }
+.resultBig { font-family: var(--font-heading); color: var(--text-h); font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.1; }
+@media (prefers-reduced-motion: reduce) { .barGuess, .barReal { transition: none; } }
+
+/* Garis air (hanya layar lebar, karena memakai ruang kosong di tepi) */
+.thread { display: none; position: absolute; top: 0; left: max(0.25rem, calc((100vw - var(--container-max, 1200px)) / 2 - 34px)); pointer-events: none; }
+.ghost { fill: none; stroke: var(--accent-border); stroke-width: 2; stroke-dasharray: 3 7; opacity: 0.5; }
+.line { fill: none; stroke: #5ba7b5; stroke-width: 4; stroke-linecap: round; transition: stroke 0.8s ease; }
+.dropCircle { fill: #5ba7b5; transition: fill 0.8s ease; }
+.thread[data-water='keruh'] .line { stroke: #9c7b4e; }
+.thread[data-water='keruh'] .dropCircle { fill: #9c7b4e; }
+@media (min-width: 1280px) { .thread { display: block; } }
+@media (prefers-reduced-motion: reduce) { .line, .dropCircle { transition: none; } }

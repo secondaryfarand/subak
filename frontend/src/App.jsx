@@ -10,6 +10,7 @@ import JourneyOfWater from './features/JourneyOfWater/pages/JourneyOfWater';
 import IssuesPage from './features/Issues/pages/IssuesPage';
 import IssueDetail from './features/Issues/pages/IssueDetail';
 import SubakConnect from './features/Community/pages/SubakConnect';
+import GreenActionPage from './features/GreenAction/pages/GreenActionPage';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -71,15 +72,8 @@ function App() {
         <Route path="/isu" element={<IssuesPage />} />
         <Route path="/isu/:slug" element={<IssueDetail />} />
     
-        <Route
-          path="/green-action"
-          element={
-            <PlaceholderPage
-              title="Mengubah Edukasi Menjadi Tindakan."
-              subtitle="Halaman kampanye yang berisi aksi nyata, misalnya hemat air, menjaga kebersihan saluran irigasi, mengurangi sampah, dan mendukung produk petani lokal. Tambahkan checklist aksi lingkungan yang bisa digunakan pengunjung."
-            />
-          }
-        />
+        <Route path="/green-action" element={<GreenActionPage />} />
+        
         <Route
           path="/galeri"
           element={<StoriesGallery/> }
