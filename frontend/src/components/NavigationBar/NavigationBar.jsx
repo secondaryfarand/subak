@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './NavigationBar.module.css';
@@ -8,20 +7,25 @@ const NavigationBar = ({ theme, onToggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  // Mode transparan aktif hanya saat di halaman Beranda (Hero Video) dan belum di-scroll
+  const isHomePage = location.pathname === '/';
+  const isTransparent = isHomePage && !scrolled && !isOpen;
+
   // Tutup menu mobile otomatis setiap kali pindah halaman
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Efek bayangan halus saat halaman di-scroll
+  // Deteksi scroll sejak awal (scrollY > 10px)
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
+      setScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Cek posisi awal saat halaman baru dimuat
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   // Kunci scroll body saat menu mobile terbuka
   useEffect(() => {
@@ -34,7 +38,6 @@ const NavigationBar = ({ theme, onToggleTheme }) => {
 
   const navItems = [
     { path: '/', label: 'Beranda' },
-    // { path: '/filosofi', label: 'Filosofi' },
     { path: '/eksplorasi', label: 'Eksplorasi' },
     { path: '/irigasi', label: 'Journey of Water' },
     { path: '/isu', label: 'Isu' },
@@ -44,7 +47,11 @@ const NavigationBar = ({ theme, onToggleTheme }) => {
   ];
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <header
+      className={`${styles.navbar} ${
+        isTransparent ? styles.transparent : styles.solid
+      } ${scrolled ? styles.scrolled : ''}`}
+    >
       <div className={`container ${styles.navContainer}`}>
         {/* Brand Logo */}
         <Link to="/" className={styles.logo}>
@@ -83,7 +90,7 @@ const NavigationBar = ({ theme, onToggleTheme }) => {
             {theme === 'light' ? '☾' : '☀'}
           </button>
 
-          <Link to="/ekosistem" className={`btn-primary ${styles.desktopCta}`}>
+          <Link to="/eksplorasi" className={`btn-primary ${styles.desktopCta}`}>
             Jelajahi Sistem
           </Link>
 
@@ -128,7 +135,7 @@ const NavigationBar = ({ theme, onToggleTheme }) => {
           </ul>
 
           <div className={styles.drawerFooter}>
-            <Link to="/ekosistem" className={`btn-primary ${styles.mobileCta}`}>
+            <Link to="/eksplorasi" className={`btn-primary ${styles.mobileCta}`}>
               Jelajahi Sistem Subak
             </Link>
 

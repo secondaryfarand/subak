@@ -2,6 +2,7 @@
   background-color: var(--color-cream-light);
   color: #2c3e35;
   padding: 0;
+  padding-top: 6rem;
   margin: 0;
   width: 100%;
   min-height: calc(100svh - 72px);

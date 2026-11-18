@@ -4,6 +4,7 @@
 .pageContainer {
   background-color: var(--bg);
   min-height: 100svh;
+  padding-top: 84px;
   padding-bottom: var(--section-gap);
 }
 
