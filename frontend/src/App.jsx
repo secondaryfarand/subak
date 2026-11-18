@@ -5,6 +5,8 @@ import LandingPage from './features/LandingPage/pages/LandingPage';
 import TourismMap from './features/TourismMap/pages/TourismMap';
 import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
+import ExploreSubak from './features/ExploreSubak/pages/ExploreSubak';
+import JourneyOfWater from './features/JourneyOfWater/pages/JourneyOfWater';
 import IssuesPage from './features/Issues/pages/IssuesPage';
 import IssueDetail from './features/Issues/pages/IssueDetail';
 import SubakConnect from './features/Community/pages/SubakConnect';
@@ -50,6 +52,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
+          path="/eksplorasi"
+          element={<ExploreSubak />}
+        />
+        <Route
           path="/filosofi"
           element={
             <PlaceholderPage
@@ -59,17 +65,11 @@ function App() {
           }
         />
         <Route
-          path="/irigasi"
-          element={
-            <PlaceholderPage
-              title="Arsitektur & Ekosistem Air"
-              subtitle="Menelusuri jaringan empelan, telabah, dan terowongan air (aungan) dari hulu ke hilir."
-            />
-          }
-        />
-
-    <Route path="/isu" element={<IssuesPage />} />
-    <Route path="/isu/:slug" element={<IssueDetail />} />
+            path="/irigasi"
+            element={<JourneyOfWater />}
+          />
+        <Route path="/isu" element={<IssuesPage />} />
+        <Route path="/isu/:slug" element={<IssueDetail />} />
     
         <Route
           path="/green-action"
