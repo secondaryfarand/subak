@@ -1,0 +1,30 @@
+.fact { display: flex; align-items: baseline; gap: clamp(1rem, 3vw, 2rem); padding-block: 0 var(--section-gap); }
+.factBig { font-family: var(--font-heading); color: var(--accent); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; margin: 0; }
+.factText { margin: 0; max-width: 60ch; font-size: 1.1rem; }
+.src { display: inline-block; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 600; color: var(--accent); }
+
+.block { padding-bottom: var(--section-gap); max-width: 860px; }
+.block h2 { font-family: var(--font-heading); color: var(--text-h); margin: 0 0 0.5rem; }
+.lead { max-width: 62ch; margin: 0 0 1.75rem; }
+
+.chain { list-style: none; margin: 0 0 1.5rem; padding: 0 0 0 1.25rem; border-left: 2px dashed var(--accent-border); display: grid; gap: 0.75rem; }
+.node { position: relative; }
+.node::before { content: ''; position: absolute; left: -1.7rem; top: 0.95rem; width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-border); }
+.lit::before { background: var(--accent); border-color: var(--accent); }
+.nodeBtn { font: inherit; font-weight: 600; text-align: left; width: 100%; padding: 0.8rem 1.1rem; border-radius: var(--radius-md); border: 1px solid var(--border-strong); background: var(--bg-surface); color: var(--text); cursor: pointer; }
+.lit .nodeBtn { background: var(--accent-bg); border-color: var(--accent); color: var(--text-h); }
+.nodeBody { padding: 0.75rem 1.1rem 0.25rem; animation: drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.nodeBody p { margin: 0; max-width: 62ch; }
+@keyframes drop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+.timeline li { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.year { font-family: var(--font-heading); color: var(--text-h); font-size: 1.25rem; }
+.timeline p { margin: 0; max-width: 62ch; }
+
+.nodeBtn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .fact { flex-direction: column; gap: 0.5rem; }
+  .timeline li { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+@media (prefers-reduced-motion: reduce) { .nodeBody { animation: none; } }

@@ -7,6 +7,9 @@ import StoriesGallery from './features/Gallery/pages/StoriesGallery';
 import Footer from './components/Footer/Footer';
 import ExploreSubak from './features/ExploreSubak/pages/ExploreSubak';
 import JourneyOfWater from './features/JourneyOfWater/pages/JourneyOfWater';
+import IssuesPage from './features/Issues/pages/IssuesPage';
+import IssueDetail from './features/Issues/pages/IssueDetail';
+import SubakConnect from './features/Community/pages/SubakConnect';
 
 // Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
@@ -74,6 +77,18 @@ function App() {
             />
           }
         />
+          path="/irigasi"
+          element={
+            <PlaceholderPage
+              title="Arsitektur & Ekosistem Air"
+              subtitle="Menelusuri jaringan empelan, telabah, dan terowongan air (aungan) dari hulu ke hilir."
+            />
+          }
+        />
+
+    <Route path="/isu" element={<IssuesPage />} />
+    <Route path="/isu/:slug" element={<IssueDetail />} />
+    
         <Route
           path="/green-action"
           element={
@@ -90,6 +105,10 @@ function App() {
         <Route
           path="/peta-subak"
           element={<TourismMap/> }
+        />
+        <Route
+          path="/komunitas"
+          element={<SubakConnect/> }
         />
       </Routes>
       <Footer />
