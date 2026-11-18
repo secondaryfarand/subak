@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar/NavigationBar';
@@ -45,6 +44,78 @@ const PlaceholderPage = ({ title, subtitle }) => (
   </main>
 );
 
+const AppContent = ({ theme, onToggleTheme }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  return (
+    <>
+      <ScrollToTop />
+
+      <AmbientPlayer />
+
+      <NavigationBar
+        theme={theme}
+        onToggleTheme={onToggleTheme}
+      />
+
+      {/* Beranda ('/') menempel penuh ke atas layar untuk HeroVideoSection; halaman lain diberi jarak 84px */}
+      <div
+        style={{
+          flex: 1,
+          paddingTop: isHomePage ? '0px' : '84px',
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<LandingPage theme={theme} />} />
+
+          <Route
+            path="/eksplorasi"
+            element={<ExploreSubak />}
+          />
+
+          <Route
+            path="/filosofi"
+            element={
+              <PlaceholderPage
+                title="Filosofi Tri Hita Karana"
+                subtitle="Keseimbangan spiritual, sosial, dan ekologi yang menjadi landasan utama sistem irigasi Subak."
+              />
+            }
+          />
+
+          <Route
+            path="/irigasi"
+            element={<JourneyOfWater />}
+          />
+
+          <Route path="/isu" element={<IssuesPage />} />
+          <Route path="/isu/:slug" element={<IssueDetail />} />
+
+          <Route path="/green-action" element={<GreenActionPage />} />
+
+          <Route
+            path="/galeri"
+            element={<StoriesGallery />}
+          />
+
+          <Route
+            path="/peta-subak"
+            element={<TourismMap />}
+          />
+
+          <Route
+            path="/komunitas"
+            element={<SubakConnect />}
+          />
+        </Routes>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
 function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('subak-theme') || 'light';
@@ -63,60 +134,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
-
-      <AmbientPlayer />
-
-      <NavigationBar
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
-
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-
-        <Route
-          path="/eksplorasi"
-          element={<ExploreSubak />}
-        />
-
-        <Route
-          path="/filosofi"
-          element={
-            <PlaceholderPage
-              title="Filosofi Tri Hita Karana"
-              subtitle="Keseimbangan spiritual, sosial, dan ekologi yang menjadi landasan utama sistem irigasi Subak."
-            />
-          }
-        />
-
-        <Route
-          path="/irigasi"
-          element={<JourneyOfWater />}
-        />
-
-        <Route path="/isu" element={<IssuesPage />} />
-        <Route path="/isu/:slug" element={<IssueDetail />} />
-
-        <Route path="/green-action" element={<GreenActionPage />} />
-
-        <Route
-          path="/galeri"
-          element={<StoriesGallery />}
-        />
-
-        <Route
-          path="/peta-subak"
-          element={<TourismMap />}
-        />
-
-        <Route
-          path="/komunitas"
-          element={<SubakConnect />}
-        />
-      </Routes>
-
-      <Footer />
+      <AppContent theme={theme} onToggleTheme={toggleTheme} />
     </BrowserRouter>
   );
 }

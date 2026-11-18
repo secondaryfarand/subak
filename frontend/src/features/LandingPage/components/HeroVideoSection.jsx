@@ -3,81 +3,112 @@ import { Link } from 'react-router-dom';
 import styles from './HeroVideoSection.module.css';
 
 const HeroVideoSection = ({
-  videoSrc = '/videos/subak-background-v2.mp4',
-  posterSrc = 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1800&q=85',
-  playbackSpeed = 2,      // Kecepatan putar 2x
-  fadeDuration = 1.2,     // Durasi transisi fade-out / fade-in (detik)
+  theme = 'light',
+  lightVideoSrc = '/videos/subak-background-v2.mp4',
+  nightVideoSrc = '/videos/subak-background-night.mp4',
+  lightPosterSrc = '/images/hero_poster/poster_pagi.jpg',
+  nightPosterSrc = '/images/hero_poster/poster_malam.jpg',
+  playbackSpeed = 2,      // Kecepatan putar 2x untuk pagi & malam
+  fadeDuration = 1.2,     // Durasi cross-fade looping & pergantian tema (detik)
 }) => {
-  const videoARef = useRef(null);
-  const videoBRef = useRef(null);
-  const isFadingRef = useRef(false);
+  // 4 Ref video agar pagi & malam memiliki dual-layer sendiri tanpa reload src
+  const lightARef = useRef(null);
+  const lightBRef = useRef(null);
+  const nightARef = useRef(null);
+  const nightBRef = useRef(null);
 
-  const [activeLayer, setActiveLayer] = useState('A');
+  const isLoopFadingRef = useRef({ light: false, night: false });
+  const prevThemeRef = useRef(theme);
+
+  const [activeSlot, setActiveSlot] = useState(
+    theme === 'dark' ? 'night-A' : 'light-A'
+  );
   const [isPaused, setIsPaused] = useState(false);
 
-  // Set kecepatan 2x pada kedua layer video saat metadata dimuat
+  const videoRefs = {
+    'light-A': lightARef,
+    'light-B': lightBRef,
+    'night-A': nightARef,
+    'night-B': nightBRef,
+  };
+
+  // Pastikan kecepatan 2x selalu terpasang pada seluruh elemen video
   useEffect(() => {
-    const videos = [videoARef.current, videoBRef.current];
-    videos.forEach((vid) => {
-      if (vid) {
-        vid.playbackRate = playbackSpeed;
+    Object.values(videoRefs).forEach((ref) => {
+      if (ref.current) {
+        ref.current.playbackRate = playbackSpeed;
       }
     });
   }, [playbackSpeed]);
 
-  // Pantau waktu putar video aktif; mulai crossfade sebelum video habis
-  const handleTimeUpdate = (layer) => {
-    if (layer !== activeLayer || isPaused || isFadingRef.current) return;
+  // Transisi cross-fade mulus ketika theme berubah ('light' <-> 'dark')
+  useEffect(() => {
+    if (prevThemeRef.current === theme) return;
+    prevThemeRef.current = theme;
 
-    const currentVid = layer === 'A' ? videoARef.current : videoBRef.current;
-    const nextVid = layer === 'A' ? videoBRef.current : videoARef.current;
+    const targetMode = theme === 'dark' ? 'night' : 'light';
+    const nextSlot = `${targetMode}-A`;
+    const nextVid = videoRefs[nextSlot]?.current;
+
+    // Reset flag loop mode tujuan dan mulai putar dari posisi mulus pada kecepatan 2x
+    isLoopFadingRef.current[targetMode] = false;
+
+    if (nextVid) {
+      nextVid.playbackRate = playbackSpeed;
+      if (!isPaused) {
+        nextVid.play().catch(() => {});
+      }
+    }
+
+    // Tukar slot aktif: video baru fade-in, video tema lama fade-out bersamaan
+    setActiveSlot(nextSlot);
+
+    // Setelah animasi fade selesai, jeda video tema sebelumnya agar hemat CPU/memori
+    const cleanupTimer = setTimeout(() => {
+      const oldMode = targetMode === 'night' ? 'light' : 'night';
+      videoRefs[`${oldMode}-A`]?.current?.pause();
+      videoRefs[`${oldMode}-B`]?.current?.pause();
+    }, fadeDuration * 1000 + 100);
+
+    return () => clearTimeout(cleanupTimer);
+  }, [theme, playbackSpeed, fadeDuration, isPaused]);
+
+  // Pantau waktu putar video aktif untuk cross-fade looping sebelum durasi habis
+  const handleTimeUpdate = (slot) => {
+    if (slot !== activeSlot || isPaused) return;
+
+    const [mode, layer] = slot.split('-'); // contoh: ['night', 'A']
+    if (isLoopFadingRef.current[mode]) return;
+
+    const currentVid = videoRefs[slot]?.current;
+    const nextLayer = layer === 'A' ? 'B' : 'A';
+    const nextSlot = `${mode}-${nextLayer}`;
+    const nextVid = videoRefs[nextSlot]?.current;
 
     if (!currentVid || !nextVid || !currentVid.duration) return;
 
-    // Hitung sisa waktu nyata (memperhitungkan playbackSpeed 2x)
     const remainingRealSeconds =
       (currentVid.duration - currentVid.currentTime) / playbackSpeed;
 
     if (remainingRealSeconds <= fadeDuration) {
-      isFadingRef.current = true;
+      isLoopFadingRef.current[mode] = true;
 
-      // Siapkan video berikutnya dari detik 0 dengan kecepatan 2x
       nextVid.currentTime = 0;
       nextVid.playbackRate = playbackSpeed;
       nextVid.play().catch(() => {});
 
-      // Tukar layer aktif untuk memicu CSS opacity transition (fade out & fade in)
-      const nextLayer = layer === 'A' ? 'B' : 'A';
-      setActiveLayer(nextLayer);
+      setActiveSlot(nextSlot);
 
-      // Reset flag setelah transisi fade selesai
       setTimeout(() => {
         currentVid.pause();
         currentVid.currentTime = 0;
-        isFadingRef.current = false;
+        isLoopFadingRef.current[mode] = false;
       }, fadeDuration * 1000);
     }
   };
 
-  // Sinkronkan tombol Play / Pause
-  const handleTogglePlay = () => {
-    const activeVid =
-      activeLayer === 'A' ? videoARef.current : videoBRef.current;
-    if (!activeVid) return;
-
-    if (isPaused) {
-      activeVid.playbackRate = playbackSpeed;
-      activeVid.play();
-      setIsPaused(false);
-    } else {
-      videoARef.current?.pause();
-      videoBRef.current?.pause();
-      setIsPaused(true);
-    }
-  };
-
   const handleScrollDown = () => {
-    const nextSection = document.getElementById('data');
+    const nextSection = document.getElementById('intro');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -89,51 +120,85 @@ const HeroVideoSection = ({
       className={styles.heroViewport}
       style={{ '--fade-duration': `${fadeDuration}s` }}
     >
-      {/* Layer Video A */}
+      {/* ==================== LAYER VIDEO PAGI (LIGHT) ==================== */}
       <video
-        ref={videoARef}
+        ref={lightARef}
         className={`${styles.bgVideo} ${
-          activeLayer === 'A' ? styles.videoVisible : styles.videoHidden
+          activeSlot === 'light-A' ? styles.videoVisible : styles.videoHidden
         }`}
-        autoPlay
-        muted
-        playsInline
-        poster={posterSrc}
-        onLoadedMetadata={(e) => {
-          e.currentTarget.playbackRate = playbackSpeed;
-        }}
-        onTimeUpdate={() => handleTimeUpdate('A')}
-      >
-        <source src={videoSrc} type="video/mp4" />
-        <source
-          src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-green-rice-terraces-in-bali-41573-large.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Layer Video B (Untuk transisi cross-fade mulus tanpa layar hitam) */}
-      <video
-        ref={videoBRef}
-        className={`${styles.bgVideo} ${
-          activeLayer === 'B' ? styles.videoVisible : styles.videoHidden
-        }`}
+        src={lightVideoSrc}
+        poster={lightPosterSrc}
+        autoPlay={theme === 'light'}
         muted
         playsInline
         preload="auto"
         onLoadedMetadata={(e) => {
           e.currentTarget.playbackRate = playbackSpeed;
         }}
-        onTimeUpdate={() => handleTimeUpdate('B')}
-      >
-        <source src={videoSrc} type="video/mp4" />
-        <source
-          src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-green-rice-terraces-in-bali-41573-large.mp4"
-          type="video/mp4"
-        />
-      </video>
+        onPlaying={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onTimeUpdate={() => handleTimeUpdate('light-A')}
+      />
 
-      {/* Overlay Gradien Sinematik */}
-      {/* <div className={styles.scrimOverlay} aria-hidden="true" /> */}
+      <video
+        ref={lightBRef}
+        className={`${styles.bgVideo} ${
+          activeSlot === 'light-B' ? styles.videoVisible : styles.videoHidden
+        }`}
+        src={lightVideoSrc}
+        poster={lightPosterSrc}
+        muted
+        playsInline
+        preload="auto"
+        onLoadedMetadata={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onPlaying={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onTimeUpdate={() => handleTimeUpdate('light-B')}
+      />
+
+      {/* ==================== LAYER VIDEO MALAM (NIGHT) ==================== */}
+      <video
+        ref={nightARef}
+        className={`${styles.bgVideo} ${
+          activeSlot === 'night-A' ? styles.videoVisible : styles.videoHidden
+        }`}
+        src={nightVideoSrc}
+        poster={nightPosterSrc}
+        autoPlay={theme === 'dark'}
+        muted
+        playsInline
+        preload="auto"
+        onLoadedMetadata={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onPlaying={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onTimeUpdate={() => handleTimeUpdate('night-A')}
+      />
+
+      <video
+        ref={nightBRef}
+        className={`${styles.bgVideo} ${
+          activeSlot === 'night-B' ? styles.videoVisible : styles.videoHidden
+        }`}
+        src={nightVideoSrc}
+        poster={nightPosterSrc}
+        muted
+        playsInline
+        preload="auto"
+        onLoadedMetadata={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onPlaying={(e) => {
+          e.currentTarget.playbackRate = playbackSpeed;
+        }}
+        onTimeUpdate={() => handleTimeUpdate('night-B')}
+      />
 
       {/* Konten Editorial Kiri */}
       <div className={`container ${styles.heroContainer}`}>
@@ -164,17 +229,6 @@ const HeroVideoSection = ({
           </div>
         </div>
       </div>
-
-      {/* Tombol Kontrol Video Minimalis */}
-      {/* <button
-        type="button"
-        onClick={handleTogglePlay}
-        className={styles.videoControlBtn}
-        aria-label={isPaused ? 'Putar video latar' : 'Jeda video latar'}
-        title={isPaused ? 'Putar Video' : 'Jeda Video'}
-      >
-        {isPaused ? '▶' : '❚❚'}
-      </button> */}
 
       {/* Indikator Gulir Tengah Bawah */}
       <button

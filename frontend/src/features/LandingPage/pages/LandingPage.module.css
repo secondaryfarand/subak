@@ -326,3 +326,7 @@
     text-align: center;
   }
 }
+
+.intro_none {
+  display: none;
+}

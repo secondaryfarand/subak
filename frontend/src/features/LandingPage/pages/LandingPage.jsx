@@ -7,12 +7,12 @@ import InteractiveSolutionsSection from '../components/InteractiveSolutionsSecti
 import FieldShowcaseBanner from '../components/FieldShowcaseBanner';
 import FarmerVoicesSection from '../components/FarmerVoicesSection';
 
-const LandingPage = () => {
+const LandingPage = ({ theme }) => {
   return (
     <div className={styles.pageWrapper}>
       <main>
         {/* 1. Hero Video Sinematik Full-Screen (Langsung tampil tanpa delay ScrollReveal) */}
-        <HeroVideoSection />
+        <HeroVideoSection theme={theme} />
 
         {/* 2. Statistik & Angka */}
         <ScrollReveal delay={100}>
@@ -38,6 +38,8 @@ const LandingPage = () => {
 
         {/* 3. Child: Editorial Split Narasi + 3 Kartu Foto */}
         <ScrollReveal delay={100}>
+          <section id="intro" className="section_none">
+          </section>
           <EditorialIntroSection />
         </ScrollReveal>
 
