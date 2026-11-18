@@ -7,19 +7,25 @@ const NavigationBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  // Mode transparan aktif hanya saat di halaman Beranda (Hero Video) dan belum di-scroll
+  const isHomePage = location.pathname === '/';
+  const isTransparent = isHomePage && !scrolled && !isOpen;
+
   // Tutup menu mobile otomatis setiap kali pindah halaman
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Efek bayangan halus saat halaman di-scroll
+  // Deteksi scroll sejak awal (scrollY > 10px)
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
+      setScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll(); // Cek posisi awal saat halaman baru dimuat
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   // Kunci scroll body saat menu mobile terbuka
   useEffect(() => {
@@ -31,7 +37,6 @@ const NavigationBar = () => {
 
   const navItems = [
     { path: '/', label: 'Beranda' },
-    // { path: '/filosofi', label: 'Filosofi' },
     { path: '/eksplorasi', label: 'Eksplorasi' },
     { path: '/irigasi', label: 'Journey of Water' },
     { path: '/isu', label: 'Isu' },
@@ -41,7 +46,11 @@ const NavigationBar = () => {
   ];
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <header
+      className={`${styles.navbar} ${
+        isTransparent ? styles.transparent : styles.solid
+      } ${scrolled ? styles.scrolled : ''}`}
+    >
       <div className={`container ${styles.navContainer}`}>
         {/* Brand Logo */}
         <Link to="/" className={styles.logo}>
@@ -69,7 +78,7 @@ const NavigationBar = () => {
 
         {/* CTA Desktop & Tombol Hamburger Mobile */}
         <div className={styles.navActions}>
-          <Link to="/ekosistem" className={`btn-primary ${styles.desktopCta}`}>
+          <Link to="/eksplorasi" className={`btn-primary ${styles.desktopCta}`}>
             Jelajahi Sistem
           </Link>
 

@@ -95,7 +95,7 @@ const TourismMap = () => {
           <div className={styles.headerTop}>
             <div>
               <span className={styles.eyebrow}>Pariwisata Berkelanjutan • Bali</span>
-              <h1 className={styles.pageTitle}>TourismMap Subak</h1>
+              <h1 className={styles.pageTitle}>Peta Subak</h1>
               <p className={styles.pageSubtitle}>
                 Jelajahi keterhubungan hulu ke hilir kawasan Subak di Bali dan pahami
                 etika berkunjung untuk menjaga kelestarian alam serta ruang sakral petani.
