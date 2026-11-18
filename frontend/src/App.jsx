@@ -77,14 +77,6 @@ function App() {
             />
           }
         />
-          path="/irigasi"
-          element={
-            <PlaceholderPage
-              title="Arsitektur & Ekosistem Air"
-              subtitle="Menelusuri jaringan empelan, telabah, dan terowongan air (aungan) dari hulu ke hilir."
-            />
-          }
-        />
 
     <Route path="/isu" element={<IssuesPage />} />
     <Route path="/isu/:slug" element={<IssueDetail />} />
