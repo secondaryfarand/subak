@@ -8,6 +8,7 @@
   --cream: var(--color-cream, #f5f3e9);
   --sage: var(--color-sage, #e8eee5);
   --water: #4f9b91;
+  --water-light: #82d6c6;
   --muted: #718078;
   --line: rgba(23, 61, 50, 0.14);
 
@@ -119,13 +120,11 @@
    JOURNEY SECTION
 ========================================= */
 
-
 .journey {
   position: relative;
   padding: 105px 8% 115px;
-  background: #173D32;
+  background: #173d32;
 }
-
 
 .sectionHeading {
   text-align: center;
@@ -137,9 +136,8 @@
   margin-bottom: 17px;
 }
 
-
 .sectionHeading h2 {
-  color: #F5F3E9;
+  color: #f5f3e9;
   font-size: clamp(34px, 4vw, 48px);
   line-height: 1.15;
   letter-spacing: -1.8px;
@@ -154,142 +152,366 @@
   margin: auto;
 }
 
-
 /* =========================================
-   TIMELINE
+   JOURNEY LAYOUT
 ========================================= */
 
-
-/* WATER FLOW TIMELINE */
-.timeline {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.journeyLayout {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
   align-items: center;
-  gap: 14px;
-  max-width: 1000px;
-  margin: 52px auto 44px;
-  padding: 0 10px;
+  gap: 45px;
 }
 
+/* =========================================
+   LEFT WATER TIMELINE
+========================================= */
 
-/* Garis aliran air yang bergerak */
+.waterTimeline {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 620px;
+  margin: 0 auto;
+}
 
-.timelineProgress {
+.waterPath {
   position: absolute;
-  top: 50%;
-  left: 8%;
-  height: 3px;
-  width: 0;
-  background: #70b9ae;
-  transform: translateY(-50%);
-  z-index: 0;
-  transition: width 0.5s ease;
-  box-shadow: 0 0 8px rgba(112, 185, 174, 0.5);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
   pointer-events: none;
 }
 
+/* Background path */
 
-
-/* Garis aliran air */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 8%;
-  right: 8%;
-  height: 3px;
-  background: rgba(79, 155, 145, 0.3);
-  transform: translateY(-50%);
-  z-index: 0;
+.waterPathTrack,
+.waterPathProgress,
+.waterPathFlow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-/* Tombol setiap tahap */
-.timelineItem {
-  position: relative;
-  z-index: 1;
+.waterPathTrack {
+  stroke: rgba(112, 185, 174, 0.22);
+  stroke-width: 7;
+}
+
+/* Moving water effect */
+
+.waterPathFlow {
+  stroke: rgba(130, 214, 198, 0.65);
+  stroke-width: 3;
+  stroke-dasharray: 3 15;
+  animation: waterFlow 2.5s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(130, 214, 198, 0.35));
+}
+
+@keyframes waterFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
+/* Progress path */
+
+.waterPathProgress {
+  stroke: var(--water-light);
+  stroke-width: 6;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  filter: drop-shadow(0 0 7px rgba(130, 214, 198, 0.5));
+  transition: stroke-dashoffset 1s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+/* =========================================
+   TIMELINE BUTTONS
+========================================= */
+
+.waterStepButton {
+  position: absolute;
+  z-index: 2;
+  width: 175px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 20px;
-  border: 1px solid rgba(232, 238, 229, 0.25);
-  border-radius: 40px;
-  background: #21483e;
+  gap: 12px;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
   color: #f5f3e9;
-  font: inherit;
-  font-size: 13px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
 }
 
-/* Nomor tahap */
-.stepNumber {
-  color: #70b9ae;
-  font-weight: 700;
+.waterStepButton:hover {
+  transform: translateY(-50%) scale(1.04);
+}
+
+.waterStepButton:focus-visible {
+  outline: 2px solid var(--water-light);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+/* =========================================
+   ZIG-ZAG POSITIONS
+   KEEP ORIGINAL POSITIONS
+========================================= */
+
+.step1 {
+  top: 7.8%;
+  left: 0;
+  flex-direction: row;
+  text-align: right;
+}
+
+.step2 {
+  top: 27.6%;
+  right: 0;
+  flex-direction: row-reverse;
+  text-align: left;
+}
+
+.step3 {
+  top: 48.3%;
+  left: 0;
+  flex-direction: row;
+  text-align: right;
+}
+
+.step4 {
+  top: 69%;
+  right: 0;
+  flex-direction: row-reverse;
+  text-align: left;
+}
+
+.step5 {
+  top: 92.2%;
+  left: 0;
+  flex-direction: row;
+  text-align: right;
+}
+
+/* =========================================
+   STAGE LABELS
+========================================= */
+
+.waterStepLabel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.waterStepLabel small {
+  color: #82bdb1;
   font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
 }
 
-/* Tahap aktif */
-.timelineItem.active {
+.waterStepLabel strong {
+  color: #f5f3e9;
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* =========================================
+   STAGE NUMBERS
+========================================= */
+
+.waterStepNumber {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid rgba(130, 214, 198, 0.55);
+  border-radius: 50%;
+  background: #21483e;
+  color: #82d6c6;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.35s ease;
+}
+
+/* Active stage */
+
+.waterStepActive .waterStepNumber {
+  background: var(--water-light);
+  border-color: var(--water-light);
+  color: #173d32;
+  animation: waterPulse 2.5s ease-in-out infinite;
+}
+
+.waterStepActive .waterStepLabel strong {
+  color: var(--water-light);
+  font-weight: 700;
+}
+
+/* Completed stage */
+
+.waterStepCompleted .waterStepNumber {
   background: #4f9b91;
   border-color: #4f9b91;
   color: white;
-  box-shadow: 0 0 0 5px rgba(79, 155, 145, 0.16);
-  transform: translateY(-3px);
 }
 
-.timelineItem.active .stepNumber {
-  color: white;
+/* Pulse animation */
+
+@keyframes waterPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 6px rgba(130, 214, 198, 0.10);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(130, 214, 198, 0.17);
+  }
 }
-
-/* Efek hover */
-.timelineItem:hover {
-  border-color: #70b9ae;
-  transform: translateY(-2px);
-}
-
-
 
 /* =========================================
-   DETAIL CARD
+   RIGHT DETAIL CARD
 ========================================= */
 
-.detailCard {
-  max-width: 1120px;
-  margin: auto;
+.journeyLayout .detailCard {
+  width: 100%;
+  max-width: 490px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr;
   background: var(--cream);
   border: 1px solid rgba(23, 61, 50, 0.08);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 25px 60px rgba(23, 61, 50, 0.09);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.13);
 }
 
-.detailImage {
-  min-height: 480px;
+/* =========================================
+   JOURNEY PROGRESS INDICATOR
+========================================= */
+
+.journeyProgress {
+  padding: 24px 34px 0;
+  background: var(--cream);
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progressInfo span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.progressInfo strong {
+  color: var(--water);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 5px;
+  background: rgba(79, 155, 145, 0.17);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--water);
+  border-radius: inherit;
+  transition: width 0.65s ease;
+}
+
+.journeyProgress > p {
+  color: var(--forest);
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+
+/* =========================================
+   DETAIL IMAGE
+========================================= */
+
+.journeyLayout .detailImage {
+  width: 100%;
+  height: 245px;
+  min-height: 245px;
+  margin-top: 20px;
   overflow: hidden;
   position: relative;
 }
 
-.detailImage img {
+.journeyLayout .detailImage img {
   width: 100%;
   height: 100%;
-  min-height: 480px;
+  min-height: 245px;
   object-fit: cover;
   display: block;
   transition: transform 0.7s ease;
+  animation: imageReveal 0.65s ease both;
 }
 
-.detailImage:hover img {
+.journeyLayout .detailImage:hover img {
   transform: scale(1.045);
 }
 
-.detailContent {
-  padding: 58px 50px;
+@keyframes imageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   DETAIL CONTENT
+========================================= */
+
+.journeyLayout .detailContent {
+  padding: 30px 34px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: contentReveal 0.55s ease both;
+}
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .stepLabel {
@@ -300,28 +522,31 @@
   margin-bottom: 19px;
 }
 
-.detailContent h3 {
+.journeyLayout .detailContent h3 {
   color: var(--forest);
-  font-size: clamp(29px, 3vw, 39px);
+  font-size: clamp(27px, 3vw, 35px);
   line-height: 1.2;
   letter-spacing: -1.2px;
-  margin: 0 0 22px;
+  margin: 0 0 15px;
 }
 
-.detailContent > p {
+.journeyLayout .detailContent > p {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 2;
+  font-size: 13px;
+  line-height: 1.85;
   margin: 0;
 }
 
-/* FACT BOX */
+/* =========================================
+   FACT BOX
+========================================= */
 
 .factBox {
-  padding: 23px 25px;
-  margin-top: 28px;
+  padding: 19px 21px;
+  margin-top: 20px;
   border-left: 3px solid var(--water);
   background: #e9eee5;
+  animation: contentReveal 0.7s ease both;
 }
 
 .factBox strong {
@@ -337,61 +562,6 @@
   margin: 10px 0 0;
 }
 
-
-/* =========================================
-   JOURNEY TRANSITION ANIMATION
-========================================= */
-
-@keyframes imageReveal {
-  from {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes contentReveal {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.detailImage img {
-  animation: imageReveal 0.65s ease both;
-}
-
-.detailContent {
-  animation: contentReveal 0.55s ease both;
-}
-
-.stepLabel {
-  animation: contentReveal 0.45s ease both;
-}
-
-.factBox {
-  animation: contentReveal 0.7s ease both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .detailImage img,
-  .detailContent,
-  .stepLabel,
-  .factBox {
-    animation: none;
-  }
-}
-
-
 /* =========================================
    NAVIGATION BUTTONS
 ========================================= */
@@ -400,7 +570,7 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  margin-top: 35px;
+  margin-top: 30px;
 }
 
 .navigation button {
@@ -420,6 +590,7 @@
   background: var(--forest);
   color: var(--cream);
   border-color: var(--forest);
+  transform: translateY(-2px);
 }
 
 .navigation button:disabled {
@@ -427,125 +598,9 @@
   cursor: not-allowed;
 }
 
-/* ACCESSIBILITY */
-
-.timelineItem:focus-visible,
-.navigation button:focus-visible,
-.heroButton:focus-visible {
+.navigation button:focus-visible {
   outline: 3px solid var(--water);
   outline-offset: 4px;
-}
-
-/* =========================================
-   RESPONSIVE TABLET
-========================================= */
-
-@media (max-width: 1000px) {
-  .hero {
-    padding: 75px 6%;
-    gap: 40px;
-  }
-
-  .heroImage {
-    height: 390px;
-  }
-
-  .detailContent {
-    padding: 40px 32px;
-  }
-
-  .detailImage,
-  .detailImage img {
-    min-height: 420px;
-  }
-}
-
-/* =========================================
-   RESPONSIVE MOBILE
-========================================= */
-
-@media (max-width: 750px) {
-  .hero {
-    min-height: auto;
-    grid-template-columns: 1fr;
-    padding: 65px 7%;
-    gap: 40px;
-  }
-
-  .hero h1 {
-    font-size: clamp(42px, 10vw, 58px);
-  }
-
-  .heroImage {
-    height: 330px;
-    border-radius: 120px 120px 8px 8px;
-  }
-
-  .journey {
-    padding: 75px 6%;
-  }
-
-  .sectionHeading {
-    margin-bottom: 40px;
-  }
-
-  .timeline {
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-
-  .timelineItem {
-    padding: 12px 16px;
-    font-size: 11px;
-  }
-
-  .detailCard {
-    grid-template-columns: 1fr;
-  }
-
-  .detailImage,
-  .detailImage img {
-    height: 300px;
-    min-height: 300px;
-  }
-
-  .detailContent {
-    padding: 35px 27px;
-  }
-
-
-.timeline {
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 35px auto;
-}
-
-.timeline::before {
-  display: none;
-}
-
-.timelineItem {
-  padding: 12px 16px;
-  font-size: 12px;
-}
-
-
-}
-
-@media (max-width: 450px) {
-  .heroImage {
-    height: 260px;
-  }
-
-  .detailContent h3 {
-    font-size: 30px;
-  }
-
-  .navigation button {
-    padding: 12px;
-    font-size: 11px;
-  }
 }
 
 
@@ -561,7 +616,6 @@
   color: #173d32;
 }
 
-/* Decorative top line */
 .closing::before {
   content: "";
   position: absolute;
@@ -572,10 +626,9 @@
   background: #173d32;
 }
 
-/* Main content */
 .closingContent {
-  max-width: 760px;
-  margin: 0 auto 65px;
+  max-width: 780px;
+  margin: 0 auto 55px;
   text-align: center;
 }
 
@@ -592,6 +645,7 @@
   font-size: clamp(38px, 5vw, 64px);
   line-height: 1.15;
   font-weight: 500;
+  letter-spacing: -1.5px;
 }
 
 .closingContent h2 span {
@@ -603,55 +657,61 @@
   max-width: 680px;
   margin: 0 auto;
   color: #718078;
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 15px;
+  line-height: 1.95;
 }
 
-/* Three values */
-.valuesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  max-width: 1100px;
-  margin: 0 auto 85px;
-}
-
-.valueCard {
-  padding: 35px 30px;
-  background: #e8eee5;
-  border: 1px solid rgba(23, 61, 50, 0.1);
+.closingImage {
+  position: relative;
+  max-width: 1050px;
+  height: 390px;
+  margin: 0 auto 65px;
+  overflow: hidden;
   border-radius: 8px;
-  transition: transform 0.3s ease,
-              box-shadow 0.3s ease;
+  box-shadow: 0 20px 50px rgba(23, 61, 50, 0.13);
 }
 
-.valueCard:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 15px 35px rgba(23, 61, 50, 0.1);
+.closingImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s ease;
 }
 
-.valueCard > span {
-  color: #4f9b91;
-  font-size: 13px;
+.closingImage:hover img {
+  transform: scale(1.035);
+}
+
+.closingImageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 45px;
+  background: linear-gradient(
+    180deg,
+    transparent 25%,
+    rgba(15, 40, 32, 0.78) 100%
+  );
+}
+
+.closingImageOverlay span {
+  color: #a6d9ce;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
 }
 
-.valueCard h3 {
-  margin: 24px 0 13px;
-  color: #173d32;
+.closingImageOverlay p {
+  color: #f5f3e9;
   font-family: Georgia, serif;
-  font-size: 25px;
-}
-
-.valueCard p {
+  font-size: clamp(24px, 3vw, 36px);
   margin: 0;
-  color: #718078;
-  font-size: 14px;
-  line-height: 1.8;
 }
 
-/* Footer */
 .closingFooter {
   padding-top: 25px;
   border-top: 1px solid rgba(23, 61, 50, 0.15);
@@ -661,232 +721,57 @@
 .closingFooter p {
   margin: 0;
   color: #718078;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
-}
-
-/* Responsive */
-@media (max-width: 750px) {
-  .closing {
-    padding: 80px 6% 30px;
-  }
-
-  .closingContent {
-    margin-bottom: 45px;
-  }
-
-  .valuesGrid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    margin-bottom: 55px;
-  }
-
-  .valueCard {
-    padding: 28px 25px;
-  }
-}
-
-@keyframes cardReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.valueCard {
-  animation: cardReveal 0.7s ease both;
-}
-
-.valueCard:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.valueCard:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .valueCard {
-    animation: none;
-  }
-}
-
-/* =========================================
-   RESPONSIVE DESIGN
-========================================= */
-
-/* TABLET */
-@media (max-width: 1000px) {
-  .hero {
-    grid-template-columns: 1fr 0.85fr;
-    gap: 30px;
-    padding: 65px 5%;
-  }
-
-  .journey {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .timeline {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .timeline::before,
-  .timelineProgress {
-    display: none;
-  }
-
-  .timelineItem {
-    font-size: 12px;
-    padding: 12px 15px;
-  }
-
-  .detailCard {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .detailImage img {
-    min-height: 420px;
-  }
-
-  .detailContent {
-    padding: 40px 30px;
-  }
+  letter-spacing: 2.5px;
 }
 
 /* MOBILE */
-@media (max-width: 750px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 55px 6%;
-    gap: 35px;
-  }
 
-  .heroContent {
-    text-align: center;
-  }
-
-  .heroImage {
-    width: 100%;
-  }
-
-  .heroImage img {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-  }
-
-  .journey {
-    padding: 65px 6%;
-  }
-
-  .sectionHeading h2 {
-    font-size: 36px;
-  }
-
-  .timeline {
-    justify-content: center;
-    margin: 35px auto;
-  }
-
-  .timelineItem {
-    justify-content: center;
-    flex: 0 1 auto;
-    font-size: 11px;
-    padding: 11px 14px;
-  }
-
-  .detailCard {
-    grid-template-columns: 1fr;
-  }
-
-  .detailImage img {
-    width: 100%;
-    min-height: 260px;
-    max-height: 320px;
-    object-fit: cover;
-  }
-
-  .detailContent {
-    padding: 32px 25px;
-  }
-
-  .detailContent h3 {
-    font-size: 32px;
-  }
-
-  .factBox {
-    padding: 20px;
-  }
-
-  .navigation {
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .navigation button {
-    font-size: 12px;
-  }
-
+@media (max-width: 600px) {
   .closing {
-    padding: 75px 6% 30px;
+    padding: 80px 6% 28px;
   }
 
-  .closingContent h2 {
-    font-size: 40px;
+  .closingContent {
+    margin-bottom: 38px;
   }
 
   .closingContent > p {
     font-size: 14px;
   }
 
-  .valuesGrid {
-    grid-template-columns: 1fr;
+  .closingImage {
+    height: 280px;
+    margin-bottom: 40px;
+  }
+
+  .closingImageOverlay {
+    padding: 25px;
+  }
+
+  .closingFooter p {
+    font-size: 9px;
+    letter-spacing: 1.5px;
   }
 }
 
-/* SMALL MOBILE */
-@media (max-width: 450px) {
-  .heroContent h1 {
-    font-size: 38px;
-  }
 
-  .timeline {
-    gap: 9px;
-  }
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
-  .timelineItem {
-    width: 100%;
-  }
-
-  .detailContent {
-    padding: 28px 20px;
-  }
-
-  .detailContent h3 {
-    font-size: 28px;
-  }
-
-  .navigation {
-    flex-direction: column;
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  .waterPathFlow,
+  .waterPathProgress,
+  .waterStepButton,
+  .waterStepNumber,
+  .progressFill,
+  .heroButton,
+  .heroImage img,
+  .valueCard,
   .navigation button {
-    width: 100%;
-  }
-
-  .closingContent h2 {
-    font-size: 34px;
-  }
-
-  .valueCard {
-    padding: 25px 22px;
+    animation: none !important;
+    transition: none !important;
   }
 }
