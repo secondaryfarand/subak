@@ -1,0 +1,469 @@
+
+/* =========================================
+   EXPLORE SUBAK - MAIN PAGE
+========================================= */
+
+.page {
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 5vw, 64px);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   HERO SECTION - TWO COLUMNS
+========================================= */
+
+.hero {
+  padding: clamp(75px, 9vw, 115px) 0 110px;
+  background: var(--bg);
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  grid-template-rows: auto auto auto auto;
+  column-gap: clamp(35px, 5vw, 75px);
+  align-items: center;
+}
+
+.hero .eyebrow {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+
+.hero h1 {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: 650px;
+  margin-bottom: 25px;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5.3vw, 5.4rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  color: var(--text-h);
+}
+
+.hero h1 em,
+.introduction h2 em,
+.section h2 em,
+.philosophy h2 em,
+.journey h2 em {
+  color: var(--color-sage);
+  font-weight: 400;
+}
+
+.heroDescription {
+  grid-column: 1;
+  grid-row: 3;
+  max-width: 550px;
+  margin-bottom: 28px;
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+.heroActions {
+  grid-column: 1;
+  grid-row: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 14px 25px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.primaryButton {
+  background: var(--color-forest);
+  color: var(--color-cream);
+  border: 1px solid var(--color-forest);
+}
+
+.primaryButton:hover {
+  background: var(--color-leaf);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.secondaryButton {
+  color: var(--text-h);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+}
+
+.secondaryButton:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.heroImage {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  position: relative;
+  width: 100%;
+  align-self: center;
+}
+
+.heroImage img {
+  display: block;
+  width: 100%;
+  height: clamp(380px, 42vw, 550px);
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  filter: brightness(0.86);
+}
+
+.heroImage span {
+  display: block;
+  margin-top: 15px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================
+   INTRODUCTION
+========================================= */
+
+.introduction {
+  padding: clamp(85px, 12vw, 150px) 0;
+  background: var(--bg-surface);
+  text-align: center;
+}
+
+.introduction .container {
+  max-width: 1000px;
+}
+
+.introduction h2 {
+  max-width: 850px;
+  margin: 0 auto 28px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.2;
+}
+
+.introduction p {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 2;
+}
+
+/* =========================================
+   HISTORY & IRRIGATION SECTION
+========================================= */
+
+.section {
+  padding: clamp(90px, 12vw, 150px) 0;
+}
+
+.section h2 {
+  max-width: 800px;
+  margin-bottom: 55px;
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  line-height: 1.2;
+}
+
+.historyGrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(35px, 6vw, 80px);
+}
+
+.historyImage {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.historyImage img {
+  display: block;
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.historyImage:hover img {
+  transform: scale(1.035);
+}
+
+.historyText {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.historyText p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 2;
+}
+
+/* =========================================
+   TRI HITA KARANA
+========================================= */
+
+.philosophy {
+  padding: clamp(90px, 12vw, 150px) 0;
+  background: var(--bg-surface);
+}
+
+.philosophy h2 {
+  max-width: 850px;
+  margin-bottom: 24px;
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  line-height: 1.2;
+}
+
+.philosophyIntro {
+  max-width: 700px;
+  margin-bottom: 35px;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.philosophyImage {
+  width: 100%;
+  height: clamp(280px, 38vw, 440px);
+  margin-bottom: 35px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.philosophyImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.philosophyImage:hover img {
+  transform: scale(1.035);
+}
+
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.philosophyCard {
+  min-height: 290px;
+  padding: 35px 30px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--transition-smooth);
+}
+
+.philosophyCard:hover {
+  transform: translateY(-7px);
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow);
+}
+
+.philosophyCard > span {
+  display: block;
+  margin-bottom: 35px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.philosophyCard h3 {
+  margin-bottom: 15px;
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  color: var(--text-h);
+}
+
+.philosophyCard p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.85;
+}
+
+/* =========================================
+   JOURNEY CTA
+========================================= */
+
+.journey {
+  padding: clamp(90px, 12vw, 150px) 0;
+  text-align: center;
+  background: var(--bg);
+}
+
+.journey .container {
+  max-width: 900px;
+}
+
+.journey h2 {
+  margin-bottom: 25px;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.15;
+}
+
+.journey p {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.journey .primaryButton {
+  margin: 0 auto;
+}
+
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 0;
+  }
+
+  .hero .eyebrow,
+  .hero h1,
+  .heroDescription,
+  .heroActions,
+  .heroImage {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .heroImage {
+    margin-top: 45px;
+  }
+
+  .heroImage img {
+    height: 420px;
+  }
+
+  .historyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .historyImage img {
+    height: 400px;
+  }
+
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophyCard {
+    min-height: auto;
+  }
+
+  .philosophyCard > span {
+    margin-bottom: 20px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 12vw, 4rem);
+  }
+
+  .heroDescription {
+    font-size: 0.95rem;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .heroImage {
+    margin-top: 35px;
+  }
+
+  .heroImage img {
+    height: 320px;
+  }
+
+  .introduction,
+  .section,
+  .philosophy,
+  .journey {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section h2,
+  .philosophy h2 {
+    margin-bottom: 35px;
+  }
+
+  .historyImage img {
+    height: 300px;
+  }
+
+  .philosophyImage {
+    height: 260px;
+    margin-bottom: 25px;
+  }
+
+  .philosophyCard {
+    padding: 28px 24px;
+  }
+
+  .journey h2 {
+    font-size: 2.8rem;
+  }
+}
