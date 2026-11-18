@@ -380,3 +380,14 @@
   font-size: 0.9rem;
   font-weight: 600;
 }
+
+.transparent .themeToggle {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.transparent .themeToggle:hover {
+  background-color: #ffffff;
+  color: var(--color-forest);
+}

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import NavigationBar from './components/NavigationBar/Navigationbar';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import LandingPage from './features/LandingPage/pages/LandingPage';
 import TourismMap from './features/TourismMap/pages/TourismMap';
 import StoriesGallery from './features/Gallery/pages/StoriesGallery';
@@ -14,7 +14,6 @@ import SubakConnect from './features/Community/pages/SubakConnect';
 import GreenActionPage from './features/GreenAction/pages/GreenActionPage';
 import AmbientPlayer from './components/AmbientPlayer/AmbientPlayer';
 
-// Komponen pembantu agar scroll selalu kembali ke atas saat pindah halaman
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
