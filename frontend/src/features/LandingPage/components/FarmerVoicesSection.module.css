@@ -104,14 +104,43 @@
 
 /* Bottom CTA Banner */
 .bottomCtaBanner {
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--color-forest) 0%, var(--color-leaf) 100%);
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  padding: calc(clamp(2.5rem, 5vw, 4rem) + 10px) clamp(1.5rem, 4vw, 3rem);
   text-align: center;
   color: var(--color-cream);
 }
 
+.bottomCtaVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bottomCtaOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 18, 12, 0.56) 0%,
+    rgba(10, 24, 16, 0.68) 50%,
+    rgba(8, 18, 12, 0.76) 100%
+  );
+  pointer-events: none;
+}
+
 .bottomCtaContent {
+  position: relative;
+  z-index: 2;
   max-width: 640px;
   margin-inline: auto;
   display: flex;
@@ -122,11 +151,13 @@
 
 .bottomCtaContent h2 {
   color: var(--color-cream);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
 
 .bottomCtaContent p {
-  color: rgba(245, 241, 229, 0.9);
+  color: rgba(245, 241, 229, 0.92);
   font-size: 1rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .bottomCtaActions {
@@ -163,7 +194,9 @@
   justify-content: center;
   padding: 0.8rem 1.6rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(245, 241, 229, 0.45);
+  border: 1px solid rgba(245, 241, 229, 0.55);
+  background-color: rgba(10, 22, 15, 0.25);
+  backdrop-filter: blur(4px);
   color: var(--color-cream);
   font-family: var(--font-body);
   font-weight: 600;
@@ -172,7 +205,7 @@
 }
 
 .ctaOutlineBtn:hover {
-  background-color: rgba(245, 241, 229, 0.14);
+  background-color: rgba(245, 241, 229, 0.18);
   color: #ffffff;
 }
 

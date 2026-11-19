@@ -75,6 +75,17 @@ const FarmerVoicesSection = () => {
         </div>
 
         <div className={styles.bottomCtaBanner}>
+          <video
+            className={styles.bottomCtaVideo}
+            src="/videos/landingctavideo/subak.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+
+          <div className={styles.bottomCtaOverlay} aria-hidden="true" />
+
           <div className={styles.bottomCtaContent}>
             <h2>Bergabung Menjaga Kelestarian Subak Bali Hari Ini</h2>
             <p>

@@ -1,0 +1,214 @@
+/* Keluar dari batas .container biasa agar penuh dari ujung kiri ke ujung kanan layar */
+.fullBleedSection {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background-color: #09110d;
+  overflow: hidden;
+}
+
+.columnsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  height: clamp(500px, 82vh, 860px);
+  gap: 2px; /* Garis pemisah tipis elegan antar kolom */
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.columnCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: none;
+  background-color: #0b1410;
+  user-select: none;
+}
+
+/* Foto dasar hitam putih (grayscale) */
+.grayscaleImg,
+.colorRevealImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.grayscaleImg {
+  filter: grayscale(100%) contrast(1.08) brightness(0.68);
+  z-index: 1;
+}
+
+/* Foto berwarna yang hanya terlihat di lingkaran cahaya kursor */
+.colorRevealImg {
+  z-index: 2;
+  filter: saturate(1.22) contrast(1.04) brightness(1.04);
+  opacity: 0;
+  transition:
+    opacity 0.35s ease,
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+
+  -webkit-mask-image: radial-gradient(
+    circle 210px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 42%,
+    rgba(0, 0, 0, 0) 78%
+  );
+  mask-image: radial-gradient(
+    circle 210px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 42%,
+    rgba(0, 0, 0, 0) 78%
+  );
+}
+
+/* Efek pendaran cahaya lentera hangat mengikuti kursor */
+.lanternHalo {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle 230px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(255, 206, 115, 0.28) 0%,
+    rgba(244, 162, 60, 0.1) 45%,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Saat kursor masuk ke kolom */
+.columnCard.isLit .colorRevealImg,
+.columnCard.isLit .lanternHalo {
+  opacity: 1;
+}
+
+.columnCard.isLit .grayscaleImg,
+.columnCard.isLit .colorRevealImg {
+  transform: scale(1.04);
+}
+
+/* Gradien & Label Minimalis di Pojok Bawah Tiap Kolom */
+.bottomShade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  z-index: 4;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(7, 14, 10, 0.82) 100%
+  );
+  pointer-events: none;
+}
+
+.minimalCaption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 5;
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  pointer-events: none;
+  transition: transform 0.35s ease;
+}
+
+.indexTag {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(255, 214, 138, 0.78);
+}
+
+.titleTag {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 245, 238, 0.72);
+  transition: color 0.3s ease;
+}
+
+.columnCard.isLit .titleTag {
+  color: #ffffff;
+}
+
+.columnCard.isLit .minimalCaption {
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   RESPONSIVE TABLET & MOBILE
+   ========================================================================== */
+@media (max-width: 960px) {
+  .columnsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  .columnCard {
+    height: clamp(320px, 52vh, 460px);
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 540px) {
+  .columnsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+  }
+
+  .columnCard {
+    height: 300px;
+  }
+
+  /* Di layar HP tanpa hover, tap panel akan menyalakan lentera di tengah foto */
+  .colorRevealImg {
+    -webkit-mask-image: radial-gradient(
+      circle 150px at 50% 48%,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.82) 50%,
+      rgba(0, 0, 0, 0) 85%
+    );
+    mask-image: radial-gradient(
+      circle 150px at 50% 48%,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.82) 50%,
+      rgba(0, 0, 0, 0) 85%
+    );
+  }
+
+  .lanternHalo {
+    background: radial-gradient(
+      circle 165px at 50% 48%,
+      rgba(255, 206, 115, 0.28) 0%,
+      rgba(244, 162, 60, 0.1) 50%,
+      transparent 80%
+    );
+  }
+
+  .minimalCaption {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    gap: 0.45rem;
+  }
+
+  .titleTag {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+}

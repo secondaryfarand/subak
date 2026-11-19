@@ -7,6 +7,7 @@ import InteractiveSolutionsSection from '../components/InteractiveSolutionsSecti
 import FieldShowcaseBanner from '../components/FieldShowcaseBanner';
 import FarmerVoicesSection from '../components/FarmerVoicesSection';
 import TerraceParallaxDivider from '../components/TerraceParallaxDivider';
+import SubakLanternColumns from '../components/SubakeLanternColumns';
 
 const LandingPage = ({ theme }) => {
   return (
@@ -114,10 +115,12 @@ const LandingPage = ({ theme }) => {
           </section>
         </ScrollReveal>
 
-        {/* 8. Child: Bento Grid Suara Krama & CTA Penutup */}
+        <SubakLanternColumns />
+
         <ScrollReveal delay={100}>
           <FarmerVoicesSection />
         </ScrollReveal>
+
       </main>
     </div>
   );
